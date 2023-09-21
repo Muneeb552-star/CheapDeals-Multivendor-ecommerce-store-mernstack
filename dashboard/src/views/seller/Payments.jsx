@@ -42,7 +42,7 @@ const Payments = () => {
   }
 
   return (
-    <Container>
+    <Box>
      
         <Grid container spacing={3}>
 
@@ -155,6 +155,7 @@ const Payments = () => {
           {/* Successfully Withdraw Component */}
           <Grid item xs={12} sm={12} md={12} lg={6} xl={6} >
               <Paper elevation={2}>
+
                 <Box p={2}>
                   <Typography variant="h5">Success Withdrawl</Typography>
                   <Box sx={{ width: '100%', marginTop: '1rem' }}>
@@ -180,11 +181,12 @@ const Payments = () => {
                       </Box>
                     </Box>
                 </Box>
+
               </Paper>
           </Grid>
 
         </Grid>
-    </Container>
+    </Box>
   )
 }
 

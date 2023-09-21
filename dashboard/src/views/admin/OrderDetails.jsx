@@ -78,7 +78,7 @@ const OrderDetails = () => {
   };
 
   return (
-    <Container sx={{ marginY: "6rem" }}>
+    <Box>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Paper sx={{ paddingY: ".5rem", paddingX: "1rem" }} elevation={2}>
@@ -292,7 +292,7 @@ const OrderDetails = () => {
         </Grid>
 
       </Grid>
-    </Container>
+    </Box>
 
   );
 }

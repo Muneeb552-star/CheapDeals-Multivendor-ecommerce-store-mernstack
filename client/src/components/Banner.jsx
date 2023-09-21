@@ -25,7 +25,7 @@ const Banner = () => {
 ;
   
   return (
-    <div className='w-[95%] mx-auto md:mt-6'>
+    <div className='w-[95%] mx-auto mt-5 md:mt-6'>
       <div>
         <div className='w-full flex flex-wrap md:gap-8'>
           <div className='w-full'>

@@ -353,10 +353,33 @@ const ProductDetails = () => {
           <div className='flex flex-wrap'>
             <div className='w-[72%] md:w-full'>
               <div className="pr-4 md:pr-0">
+
+
                 <div className="grid grid-cols-2 gap-2">
-                  <button onClick={() => setState('description')} className={`py-1 px-5 hover:text-white hover:bg-[#ed6c02] ${state === 'description' ? 'bg-[#ed6c02] text-white' : 'bg-slate-200 text-slate-700'} rounded-sm`}>Description</button>
-                  <button onClick={() => setState('reviews')} className={`py-1 px-5 hover:text-white hover:bg-[#ed6c02] ${state === 'reviews' ? 'bg-[#ed6c02] text-white' : 'bg-slate-200 text-slate-700'} rounded-sm`}>Reviews</button>
+
+                  <button 
+                    onClick={() => setState('description')} 
+                    className={`py-1 px-5 hover:text-white hover:bg-[#6466E8] 
+                      ${state === 'description' 
+                          ? 'bg-[#6466E8] text-white' 
+                          : 'bg-slate-200 text-slate-700'
+                      } rounded-sm`}>
+                        Description
+                  </button>
+
+                  <button 
+                    onClick={() => setState('reviews')} 
+                    className={`py-1 px-5 hover:text-white hover:bg-[#6466E8] 
+                    ${state === 'reviews' 
+                        ? 'bg-[#6466E8] text-white' 
+                        : 'bg-slate-200 text-slate-700'
+                    } rounded-sm`}>
+                      Reviews
+                  </button>
+
                 </div>
+
+
                 <div>
                   {
                     state === 'reviews' 
@@ -364,13 +387,16 @@ const ProductDetails = () => {
                     : <p className='py-5 text-slate-600'>{product.description}</p>
                   }
                 </div>
+
               </div>
             </div>
+
             <div className='w-[72%] md:w-full'>
               <div className="pl-4 md:pl-0">
 
               </div>
             </div>
+
           </div>
         </div>
       </section>

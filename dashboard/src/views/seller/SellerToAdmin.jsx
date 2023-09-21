@@ -69,7 +69,7 @@ const SellerToAdmin = () => {
   const classes = useStyles();
 
   return (
-    <Container sx={{ marginY: '6rem' }}>
+    <Box>
       <div>
         <Grid container component={Paper} className={classes.chatSection}>
 
@@ -177,7 +177,7 @@ const SellerToAdmin = () => {
             
         </Grid>
       </div>
-    </Container>
+    </Box>
   )
 }
 

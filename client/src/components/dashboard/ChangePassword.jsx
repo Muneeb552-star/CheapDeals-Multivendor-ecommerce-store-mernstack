@@ -54,10 +54,9 @@ const ChangePassword = () => {
           {/* Sign In button */}
             <Button
               type="submit"
-              color='warning'
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, borderRadius: '7px' }}
+              sx={{ mt: 3, mb: 2, borderRadius: '7px', background: '#6466E8' }}
               // disabled={loader ? true : false}
             >
               {/* { loader ? <CircularProgress color="inherit" size="1.5em"/> : 'Sign In' } */}

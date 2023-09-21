@@ -149,7 +149,7 @@ const Headers = () => {
             {/* Website Logo */}
             <div className='w-3/12 md:w-6/12'>
               <div className='flex justify-center items-center'>
-                <Link to='/'><img src="/images/logo/website_logo.png" alt="website_logo" width="200px" /></Link>
+                <Link to='/'><img src="/images/logo/website_logo.png" alt="website_logo" width="250px" /></Link>
               </div>
             </div>
 
@@ -157,6 +157,7 @@ const Headers = () => {
             <div className='md:hidden w-6/12'>
               <div className='flex justify-center items-center w-full '>
                 <div className="flex border h-[50px] items-center relative w-full">
+
                   <div className="relative after:absolute after:h-[35px] after:w-[2px] after:bg-[#e2e8f0] after:right-[5px] md:hidden">
                     {/* MUI Select component */}
                     <SearchSelect
@@ -176,6 +177,7 @@ const Headers = () => {
                       }
                     </SearchSelect>
                   </div>
+
                   <input 
                     className='w-full h-full relative p-2 text-base text-slate-500 focus:outline-none' 
                     type="text" 
@@ -183,7 +185,9 @@ const Headers = () => {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)} 
                   />
-                  <button onClick={search} className='absolute right-0 px-8 h-full text-white bg-[#ed6c02]'>Search</button>
+
+                  <button onClick={search} className='absolute right-0 px-8 h-full text-white bg-[#6466E8]'>Search</button>
+
                 </div>
               </div>
             </div>
@@ -304,19 +308,21 @@ const Headers = () => {
             {/* Show All Categories */}
             <div className='w-3/12'>
               <div className="relative">
-                <div onClick={() => setCategoryShow(!categoryShow)} className="flex items-center justify-between bg-[#ed6c02] text-white h-[65px] w-[100%] px-3 mt-4 rounded-t-md cursor-pointer">
+
+                <div onClick={() => setCategoryShow(!categoryShow)} className="flex items-center justify-between bg-[#6466E8] text-white h-[65px] w-[100%] px-3 mt-4 rounded-t-md cursor-pointer">
                   <div className="flex items-center gap-2">
                     <span><LuListMinus/></span>
                     <span className='font-roboto'>All Categories</span>
                   </div>
                   <div><BiSolidDownArrow/></div>
                 </div>
-                <div className={`${categoryShow ? 'max-h-80' : 'h-0'} absolute top-100 overflow-hidden transition-all duration-500 z-[999] bg-white w-full border`}>
+
+                <div className={`${categoryShow ? 'max-h-80' : 'h-0'} absolute top-100 overflow-auto transition-all duration-500 z-[999] bg-white w-full border`}>
                   <ul className='text-slate-500 font-medium overflow-auto'>
                     {
                       categories.map((category, index) => {
                         return (
-                          <li key={index} className='flex justify-start items-center gap-2 px-[24px] py-[6px] cursor-pointer hover:bg-[#ed6c02] hover:text-white' style={{ borderBottom: "1px solid #f3f4f6" }}>
+                          <li key={index} className='flex justify-start items-center gap-2 px-[24px] py-[6px] cursor-pointer hover:bg-[#6466E8] hover:text-white' style={{ borderBottom: "1px solid #f3f4f6" }}>
                             <img src={category.image} alt={category.name} className='w-[30px] h-[30px] rounded-full overflow-hidden' />
                             <Link to={`/products?category=${category.name}`} className='text-sm block'>{category.name}</Link>
                           </li>
@@ -324,6 +330,7 @@ const Headers = () => {
                     }
                   </ul>
                 </div>
+
               </div>
             </div>
 
@@ -366,6 +373,7 @@ const Headers = () => {
           </div>
         </div>
       </div>
+      
     </header>
 
   )

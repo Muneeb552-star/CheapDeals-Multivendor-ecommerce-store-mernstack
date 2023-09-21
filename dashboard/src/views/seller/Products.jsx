@@ -151,34 +151,21 @@ const Products = () => {
   return (
     <Box sx={{ textAlign: "center", width: '100%', overflowX: 'auto' }}>
       
-          <Paper elevation={2}>
-          <Box sx={{ overflow: 'auto' }}>
-              <Box sx={{ width: '15rem', ml: '1rem' }}>
-              <TextField
-                id="search"
-                margin="normal"
-                label="Search"
-                type="text"
-                value={searchQuery}
-                onChange={handleSearch}
-                fullWidth
-                size="small"
-              />
-              </Box>
-             
-              {/* <DataGrid
-                sx={{ textAlign: "center", width: '100%' }}
-                rows={rows}
-                columns={columns}
-                getRowId={(row) => row.id}
-                initialState={{
-                  pagination: {
-                    paginationModel: { page: 0, pageSize: 5 },
-                  },
-                }}
-                pageSizeOptions={[5, 10]}
-                autoHeight
-              /> */}
+          
+      <Box sx={{ overflow: 'auto' }}>
+        <Paper elevation={2}>
+          <Box sx={{ width: '15rem', ml: '1rem' }}>
+            <TextField
+              id="search"
+              margin="normal"
+              label="Search"
+              type="text"
+              value={searchQuery}
+              onChange={handleSearch}
+              fullWidth
+              size="small"
+            />
+          </Box>
 
             <DataGrid
               rows={rows}
@@ -192,11 +179,11 @@ const Products = () => {
               pageSizeOptions={[5, 10]}
               autoHeight
             />
-          </Box>
         </Paper>
+
+      </Box>
         
         {/* Products Section Ends Here */}
-
      
     </Box>
   )

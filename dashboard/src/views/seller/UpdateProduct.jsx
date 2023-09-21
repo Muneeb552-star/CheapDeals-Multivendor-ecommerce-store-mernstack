@@ -1,5 +1,3 @@
-// I want to show MUI 'CircularProgress' on the image which i click to update the image. Untill the 'loader' variable of useSelector() hook is not set to defined (true), the loader 'CircularProgress' should show on that particular image. How to do it ?
-
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_categories } from "../../store/Slices/categorySlice";
@@ -163,7 +161,7 @@ const UpdateProduct = () => {
 
 
   return (
-    <Container sx={{ marginY: "6rem" }}>
+    <Box>
       <Grid container spacing={3}>
 
         <Grid item xs={12}>
@@ -381,7 +379,7 @@ const UpdateProduct = () => {
         </Grid>
 
       </Grid>
-    </Container>
+    </Box>
   )
 }
 

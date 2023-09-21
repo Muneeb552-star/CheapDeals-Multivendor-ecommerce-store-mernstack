@@ -50,21 +50,21 @@ const Footer = () => {
 
                 <div className='h-[50px] w-full bg-white border rounded-md relative'>
                   <input type="email" className='h-full w-full pl-3 pr-[90px] outline-0 bg-transparent' placeholder='Enter your email' />
-                  <button className='w-[90px] h-full absolute right-0 bg-[#ed6c02] text-white uppercase px-2 font-bold text-sm rounded-md'>Subscribe</button>
+                  <button className='w-[90px] h-full absolute right-0 bg-[#6466E8] text-white uppercase px-2 font-bold text-sm rounded-md'>Subscribe</button>
                 </div>
 
                 <ul className='flex justify-start items-start gap-3'>
                   <li>
-                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoFacebook /></a>
+                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#6466E8] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoFacebook /></a>
                   </li>
                   <li>
-                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoTwitter /></a>
+                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#6466E8] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoTwitter /></a>
                   </li>
                   <li>
-                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoLinkedin /></a>
+                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#6466E8] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoLinkedin /></a>
                   </li>
                   <li>
-                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoGithub /></a>
+                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#6466E8] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoGithub /></a>
                   </li>
                 </ul>
 

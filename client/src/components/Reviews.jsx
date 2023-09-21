@@ -218,7 +218,7 @@ const Reviews = ({ product }) => {
                                 className='border outline-0 p-3 w-full' name="review_message" id="" cols="30" rows="5" required>    
                             </textarea>
                             <div className="mt-2">
-                                <button type='submit' className='py-2 px-6 bg-[#ed6c02] text-white rounded-sm'>Submit Review</button>
+                                <button type='submit' className='py-2 px-6 bg-[#6466E8] text-white rounded-sm'>Submit Review</button>
                             </div>
                         </form>
                     </div>

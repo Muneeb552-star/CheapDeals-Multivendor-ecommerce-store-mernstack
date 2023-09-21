@@ -69,7 +69,7 @@ const SellerToCustomer = () => {
   const classes = useStyles();
 
   return (
-    <Container sx={{ marginY: '6rem' }}>
+    <Box>
       <div>
         <Grid container sx={{ marginBottom: '1rem' }}>
             <Grid item xs={12}>
@@ -230,7 +230,7 @@ const SellerToCustomer = () => {
             
         </Grid>
       </div>
-    </Container>
+    </Box>
   )
 }
 

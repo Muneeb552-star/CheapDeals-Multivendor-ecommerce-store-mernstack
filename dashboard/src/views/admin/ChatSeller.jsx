@@ -73,7 +73,7 @@ const ChatSeller = () => {
   const classes = useStyles();
 
   return (
-    <Container sx={{ marginY: '6rem' }}>
+    <Box>
       <div>
         <Grid container sx={{ marginBottom: '1rem' }}>
             <Grid item xs={12}>
@@ -234,7 +234,7 @@ const ChatSeller = () => {
             
         </Grid>
       </div>
-    </Container>
+    </Box>
   )
 }
 

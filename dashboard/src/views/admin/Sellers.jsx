@@ -135,7 +135,7 @@ const rows = [
 
 const Sellers = () => {
   return (
-    <Container sx={{ marginTop: "6rem"}}>
+    <Box>
       <Grid container spacing={2} >
 
         <Grid item xs={12}>
@@ -166,7 +166,7 @@ const Sellers = () => {
         {/* Sellers Section Ends Here */}
 
       </Grid>
-    </Container>
+    </Box>
   )
 }
 

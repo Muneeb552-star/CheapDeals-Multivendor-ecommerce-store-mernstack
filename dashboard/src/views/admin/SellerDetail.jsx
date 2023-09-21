@@ -49,7 +49,7 @@ const SellerDetail = () => {
     }, [seller])
 
   return (
-    <Container sx={{ marginY: "6rem"}}>
+    <Box>
       <Grid container spacing={2} >
 
         <Grid item xs={12}>
@@ -61,7 +61,7 @@ const SellerDetail = () => {
         <Grid item xs={12}>  
           <Paper elevation={2}>
             {/* Two Wrapper Division Box */}
-            <Box sx={{ height: '15vh', background: '#28c76f' }}></Box>  {/* 1st Wrap Box */}
+            <Box sx={{ height: '15vh', background: '#6466E8' }}></Box>  {/* 1st Wrap Box */}
               <Box> {/* 2nd Wrap Box */}
 
               <Box sx={{ display:"flex", justifyContent:"center" }}>
@@ -145,7 +145,7 @@ const SellerDetail = () => {
         
 
       </Grid>
-    </Container>
+    </Box>
 
   )
 }
