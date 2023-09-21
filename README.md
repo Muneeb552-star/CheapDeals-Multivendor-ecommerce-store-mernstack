@@ -7,6 +7,10 @@ Welcome to our CheapDeals Multivendor Ecommerce Store! We are thrilled to introd
 ## Overview
 Our CheapDeals Ecommerce Store is built on the robust MERN (MongoDB, Express, React, Node.js) stack, harnessing the power of these technologies to deliver a secure, efficient, and feature-rich online shopping experience. With our platform, vendors from various domains can easily set up their online shops and showcase their products to a global audience.
 
+![Image 1](./admin_dashboard_index.png)
+![Image 2](./admin_order_details.png)
+
+
 # Features
 ### 1. Multivendor Ecosystem
 Our platform is designed to support multiple vendors, each with their unique storefronts. Vendors can sign up, create their profiles, and start adding products to their shops effortlessly.
