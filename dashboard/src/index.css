@@ -1,0 +1,54 @@
+/* global styles & resets */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f2f0f4 !important;
+  height: 100% !important;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: unset;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: capitalize;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+/* BUTTONS */
+.btn-success{
+    background-color: #00DFA2 !important;
+    color: white !important;
+}
+
+/* //Colors */
+.bg-green-dark {
+  background: #28c76f !important;
+  color: white !important;
+}
+.bg-blue-dark {
+  background: #7367f0 !important;
+  color: white !important;
+}
+.text-green-dark {
+  color: #7367f0 !important;
+}
