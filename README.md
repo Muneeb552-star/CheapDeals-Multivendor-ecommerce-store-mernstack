@@ -9,7 +9,65 @@ Our CheapDeals Ecommerce Store is built on the robust MERN (MongoDB, Express, Re
 
 ### Admin dashboard (Index Page)
 ![Image 1](./images/admin_dashboard_index.png)
-![Image 2](./images/admin_order_details.png)
+
+### Admin dashboard (Orders Page)
+![Image 2](./images/admin_orders.png)
+
+### Admin dashboard (Order details Page)
+![Image 3](./images/admin_order_details.png)
+
+### Admin dashboard (Categories Page)
+![Image 4](./images/admin_show_categories.png)
+
+### Admin dashboard (Sellers Page)
+![Image 5](./images/admin_show_sellers.png)
+
+### Admin dashboard (Chat Sellers Page)
+![Image 6](./images/admin_chat-seller.png)
+
+
+## Vendor Dashboard (Index Page)
+![Image 7](./images/seller_dashboard.png)
+
+### Vendor Dashboard (Products Page)
+![Image 8](./images/seller_show_products.png)
+
+### Vendor Dashboard (Seller Profile Page)
+![Image 9](./images/seller_profile.png)
+
+### Vendor Dashboard (Seller Payment Page)
+![Image 10](./images/seller_payments.png)
+
+### Vendor Dashboard (Seller Add Product Page)
+![Image 11](./images/seller_addproduct.png)
+
+
+## Client Side (Index Page)
+![Image 12](./images/client_home_page.png)
+
+## Client Side (Store Page)
+![Image 13](./images/client_store_page.png)
+
+## Client Side (Product Details Page)
+![Image 14](./images/client_product_details.png)
+
+## Client Side (Shopping Cart Page)
+![Image 15](./images/client_cart_page.png)
+
+## Client Side (Checkout Page)
+![Image 16](./images/client_checkout_page.png)
+
+## Client Side (Client > Dashboard Page)
+![Image 17](./images/client_dashboard_page.png)
+
+## Client Side (Client > Dashboard > Order Details Page)
+![Image 18](./images/client_dashboard_page.png)
+
+## Client Side (Client > Dashboard > Wishlist Page)
+![Image 19](./images/client_dashboard_wishlist.png)
+
+
+
 
 
 # Features
