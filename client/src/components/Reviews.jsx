@@ -22,8 +22,9 @@ const Reviews = ({ product }) => {
   const totalItems = total_reviews  // Total number of items
   const totalPages = Math.ceil(totalItems / itemsPerPage)
 
-  console.log(pageNumber)
 
+  // Inside the Reviews component
+  const handlePageChange = (event, value) => setPageNumber(value)
 
   /* This function will handle the submit review. */
   const submit_review = (e) => {
@@ -190,6 +191,7 @@ const Reviews = ({ product }) => {
                         count={totalPages}
                         page={pageNumber}
                         color="warning"
+                        onChange={handlePageChange}
                         renderItem={(item) => (
                         <PaginationItem component="div" {...item} />
                     )}
