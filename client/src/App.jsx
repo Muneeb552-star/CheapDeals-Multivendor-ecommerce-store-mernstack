@@ -18,6 +18,7 @@ import ProtectUser from './utils/ProtectUser'
 import Index from './components/dashboard/Index'
 import Orders from './components/dashboard/Orders'
 import Wishlist from './components/dashboard/Wishlist'
+import Chat from './components/dashboard/Chat'
 import ChangePassword from './components/dashboard/ChangePassword'
 import OrderDetail from './components/dashboard/OrderDetail'
 
@@ -48,6 +49,8 @@ function App() {
             <Route path='my-orders' element={<Orders />} />
             <Route path='order/details/:orderId' element={<OrderDetail />} />
             <Route path='my-wishlist' element={<Wishlist />} />
+            <Route path='chat' element={<Chat />} />
+            <Route path='chat/:sellerId' element={<Chat />} />
             <Route path='change-password' element={<ChangePassword />} />
           </Route>
         </Route>

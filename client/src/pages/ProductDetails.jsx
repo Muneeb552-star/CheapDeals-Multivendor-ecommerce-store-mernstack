@@ -313,16 +313,16 @@ const ProductDetails = () => {
 
                 <ul className='flex justify-start items-center gap-3'>
                   <li>
-                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoFacebook /></a>
+                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoFacebook /></a>
                   </li>
                   <li>
-                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoTwitter /></a>
+                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoTwitter /></a>
                   </li>
                   <li>
-                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoLinkedin /></a>
+                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoLinkedin /></a>
                   </li>
                   <li>
-                    <a className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoGithub /></a>
+                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoGithub /></a>
                   </li>
                 </ul>
 
@@ -340,7 +340,12 @@ const ProductDetails = () => {
                   </button> 
                 : ''
               }
-              <button className='px-5 py-3 cursor-pointer hover:shadow-lime-500/40 bg-lime-500 text-white whitespace-nowrap'>Chat Seller</button>
+              <Link 
+                to={`/dashboard/chat/${userInfo.id}`}
+                className='px-5 py-3 cursor-pointer hover:shadow-lime-500/40 bg-lime-500 text-white whitespace-nowrap'
+              >
+                Chat Seller
+              </Link>
             </div>
 
           </div>
