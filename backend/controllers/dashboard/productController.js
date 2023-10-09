@@ -17,7 +17,6 @@ class productController {
 
             let { name, description, category, discount, price, brand, shopName, stock } = fields
             let images = files.images
-            console.log(images)
 
             name = name.trim()
             const slug = name.split(" ").join("-")

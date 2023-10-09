@@ -106,7 +106,6 @@ export const customer_register = createAsyncThunk(
 const decodedToken = (token) => {
     if (token) {
         const userInfo = jwtDecode(token)
-        console.log(userInfo)
         return userInfo
     } else {
         return ''

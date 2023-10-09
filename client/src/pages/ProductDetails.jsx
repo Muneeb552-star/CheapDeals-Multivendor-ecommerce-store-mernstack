@@ -341,7 +341,7 @@ const ProductDetails = () => {
                 : ''
               }
               <Link 
-                to={`/dashboard/chat/${userInfo.id}`}
+                to={`/dashboard/chat/${product.sellerId}`}
                 className='px-5 py-3 cursor-pointer hover:shadow-lime-500/40 bg-lime-500 text-white whitespace-nowrap'
               >
                 Chat Seller

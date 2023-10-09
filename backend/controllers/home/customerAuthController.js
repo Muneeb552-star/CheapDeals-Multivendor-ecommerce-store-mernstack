@@ -34,7 +34,7 @@ class customerAuthController {
                 });
 
                 // Create a corresponding chat entry for the customer
-                await sellerCustomerModal.create({ myId: createCustomer.id });
+                await sellerCustomerModal.create({ myId: createCustomer.id })
 
                 // Generate access token and refresh token
                 const tokens = createTokens({

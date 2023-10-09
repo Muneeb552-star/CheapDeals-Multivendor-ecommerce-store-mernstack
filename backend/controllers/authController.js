@@ -91,7 +91,6 @@ class authControllers {
         try {
             const getUser = await sellerModel.findOne({ email });
             if (getUser){
-                console.log(getUser);
                 responseReturn(res, 404, { error: 'Email already exists' }); // Return a 404 Not Found response if the email already exists
             } else {
                 const seller = await sellerModel.create({

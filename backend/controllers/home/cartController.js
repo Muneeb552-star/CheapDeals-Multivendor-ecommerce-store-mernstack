@@ -39,7 +39,7 @@ class cartController {
                 res.status(201).json({ message: 'Added to cart', product })
             }
         } catch (error) {
-            res.status(500).json('Internal Server Error'); 
+            res.status(500).json('Internal Server Error') 
         }
     }
 
