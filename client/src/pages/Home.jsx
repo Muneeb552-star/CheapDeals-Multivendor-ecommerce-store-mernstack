@@ -25,9 +25,9 @@ const Home = () => {
       <Headers />
       <Banner />
 
-      {/* <div className="mt-3 mb-7">
+      <div className="mt-7 mb-14">
         <Perks />
-      </div> */}
+      </div>
       
       <div className="my-4">
         <Categories />

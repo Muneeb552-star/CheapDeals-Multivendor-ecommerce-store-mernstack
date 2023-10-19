@@ -74,7 +74,7 @@ const FeaturedProducts = ({ products }) => {
         
         {
           products.map((product, index) =>
-            <div key={index} className="relative w-full max-w-sm bg-white hover:border hover:shadow-sm rounded-lg dark:bg-gray-800 dark:border-gray-700">
+            <div key={index} className="relative w-full max-w-sm bg-white border hover:shadow-lg rounded-lg dark:bg-gray-800 dark:border-gray-700">
               
               {/* Discount - left */}
               {
