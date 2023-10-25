@@ -52,12 +52,12 @@ const Shipping = () => {
   return (
     <>
       <Headers />
-      <section className="pt-[40px] pb-[40px] my-6 bg-orange-100 relative">
+      <section className="pt-[40px] pb-[40px] my-6 bg-blue-50 relative">
         <div className="w-[90%] h-full mx-auto">
           <div className="flex flex-col items-start justify-start h-full w-full gap-3">
             <h2 className="text-5xl font-semibold">Shipping</h2>
             <div className="flex justify-start items-center gap-2 text-xl w-full">
-              <Link to="/" className="text-[#ed6c02]">Home</Link>
+              <Link to="/" className="text-[#6466E8]">Home</Link>
               <span className="pt-1"><MdOutlineKeyboardArrowRight /></span>
               <span>Place Order</span>
             </div>
@@ -174,7 +174,7 @@ const Shipping = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col gap-1 mt-8 w-full">
-                                    <button className="px-3 py-[6px] rounded-sm hover:shadow-indigo-500/20 hover:shadow-lg bg-[#ed6c02] text-white">Save</button>
+                                    <button className="px-3 py-[6px] rounded-sm hover:shadow-indigo-500/20 hover:shadow-lg bg-[#6466E8] text-white">Save</button>
                                 </div>
                             </div>
                          </form>
@@ -206,9 +206,8 @@ const Shipping = () => {
                               <img className='h-100 w-[80px] border' src={p.productInfo.images[0]} alt={p.productInfo.name} />
                               <div className="pr-4 text-slate-600 flex flex-col gap-1">
                                 <h2 className='text-md font-semibold tracking-tight text-gray-900'>{p.productInfo.name}</h2>
-                                {/* <span className='text-sm '>Brand : <span className='text-[#ed6c02] font-semibold'>Addidas</span></span> */}
-                                <span className='text-sm '>Vendor : <span className='text-[#ed6c02] font-semibold'>{p.productInfo.shopName}</span></span>
-                                <span className='text-xs font-bold'>Price: <span className='text-lg text-[#ed6c02] font-semibold'>${p.productInfo.price - Math.floor(p.productInfo.price * p.productInfo.discount)/100}</span></span>
+                                <span className='text-sm '>Vendor : <span className='font-semibold'>{p.productInfo.shopName}</span></span>
+                                <span className='text-xs font-bold'>Price: <span className='text-lg font-semibold'>${p.productInfo.price - Math.floor(p.productInfo.price * p.productInfo.discount)/100}</span></span>
                                   {
                                     p.productInfo.discount > 0 && <span className='text-xs font-bold'> Discount:
                                       <span className='text-base text-slate-500 font-semibold ml-3 line-through'>${p.productInfo.price}</span>
@@ -243,13 +242,13 @@ const Shipping = () => {
                     <span>${price + shipping_fee}</span>
                   </div>
                   <div className="flex justify-between items-center py-1 border-y">
-                    <span className="text-xl font-xl text-[#ed6c02]">Total</span>
-                    <span className="text-xl font-xl text-[#ed6c02]">${price + shipping_fee}</span>
+                    <span className="text-xl font-xl">Total</span>
+                    <span className="text-xl font-xl text-[#6466E8]">${price + shipping_fee}</span>
                   </div>
                   <button
                     onClick={placeOrder}
                     disabled={res ? false : true}
-                    className={`px-5 py-[6px] rounded-sm hover:shadow-orange-500/20 hover:shadow-lg ${res ? 'bg-orange-500' : 'bg-orange-300'}  text-sm text-white uppercase`}>
+                    className={`px-5 py-[6px] rounded-sm hover:shadow-indigo-500/20 hover:shadow-lg ${res ? 'bg-[#6466E8]' : 'bg-indigo-200'}  text-sm text-white uppercase`}>
                       Place Order
                   </button>
                 </div>

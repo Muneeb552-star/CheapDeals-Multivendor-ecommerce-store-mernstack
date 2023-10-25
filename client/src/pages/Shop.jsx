@@ -12,6 +12,16 @@ import { Slider, Checkbox, FormControlLabel, Rating, Select, MenuItem, Paginatio
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { BsGridFill } from 'react-icons/bs'
 import { FaListUl } from 'react-icons/fa'
+import { createTheme, ThemeProvider } from '@mui/material';
+
+// Define a custom theme
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#6466E8', 
+    },
+  },
+});
  
 
 
@@ -19,12 +29,11 @@ const Shop = () => {
   const { categories, products, total_products, per_page, price_range } = useSelector(state => state.home)
   const dispatch = useDispatch()
 
-  /* State Variables for Filter products and sort products */
-  const [category, setCategory] = useState('')  // filter products by category 
-  const [range, setRange] = useState([50, 1000])              // filter products by price range
-  const [styles, setStyles] = useState('grid')                // show products in grid/list form
+  const [category, setCategory] = useState('')  
+  const [range, setRange] = useState([50, 1000])              
+  const [styles, setStyles] = useState('grid')                
   const [sortByPrice, setSortByPrice] = useState('Sort By')
-  const [rating, setRating] = useState('')                    // set rating filter query
+  const [rating, setRating] = useState('')                    
 
   /* pagination state variables */
   const [currentPage, setCurrentPage] = useState(1)
@@ -68,7 +77,6 @@ const Shop = () => {
       currentPage
     }
     dispatch(filter_products(filterOptions))
-    //  console.log(`${range[0]} ${range[1]} ${category} ${rating} ${sortByPrice} ${currentPage}`)
   }, [range, category, rating, sortByPrice, currentPage, dispatch])
 
 
@@ -89,15 +97,16 @@ const Shop = () => {
 
 
   return (
+    <ThemeProvider theme={theme}>
     <>
       <Headers/>
       {/* Shop Banner */}
-      <section className='pt-[80px] pb-[50px] my-6 bg-orange-100 relative'>
+      <section className='relative pt-[80px] pb-[50px] my-6 bg-blue-50'>
         <div className='w-[90%] h-full mx-auto'>
           <div className="flex flex-col items-start justify-start h-full w-full font-roboto gap-3">
             <h2 className='text-5xl font-semibold'>Shop</h2>
             <div className="flex justify-start items-center gap-2 text-xl w-full">
-              <Link to="/" className='text-[#ed6c02]'>Home</Link>
+              <Link to="/" className='text-[#6466E8]'>Home</Link>
               <span className='pt-1'><MdOutlineKeyboardArrowRight /></span>
               <span>Products</span>
             </div>
@@ -106,7 +115,7 @@ const Shop = () => {
       </section>
 
       <section>
-        <div className='w-[90%] h-full mx-auto'>
+        <div className='w-[90%] h-full mx-auto mb-8'>
           <div className="w-full flex gap-5 ">
 
             {/* Apply Filter Section */}
@@ -128,7 +137,7 @@ const Shop = () => {
                               checked={category === c.name ? true : false}
                               onChange={(e) => handleCheck(e, c.name)}
                               size="small" 
-                              color='warning' 
+                              color='primary' 
                           />} 
                           label={c.name}
                         />)
@@ -146,11 +155,11 @@ const Shop = () => {
                       valueLabelDisplay="auto" 
                       min={price_range.low} 
                       max={price_range.high} 
-                      color="warning" 
+                      color="primary" 
                       aria-labelledby="range-slider"
                     />
                   </div>
-                    <label className='text-sm font-semibold text-[#ed6c02]'>Price: ${Math.floor(range[0])} - ${Math.floor(range[1])}</label>
+                    <label className='text-sm font-semibold text-[#6466E8]'>Price: ${Math.floor(range[0])} - ${Math.floor(range[1])}</label>
                 </div>
 
                 {/* Rating Filter */}
@@ -225,15 +234,16 @@ const Shop = () => {
               {/* Pagination component */}
               <div className="flex items-center justify-center mt-5">
                 {
-                  total_products > per_page && <Pagination
-                  count={totalPages}
-                  page={currentPage}
-                  onChange={handleChangePage}
-                  color="warning"
-                  renderItem={(item) => (
-                    <PaginationItem component="div" {...item} />
-                  )}
-                />
+                  total_products > per_page && 
+                  <Pagination
+                    count={totalPages}
+                    page={currentPage}
+                    onChange={handleChangePage}
+                    color="primary"
+                    renderItem={(item) => (
+                      <PaginationItem component="div" {...item} />
+                    )}
+                  />
                 }
               </div>
 
@@ -244,6 +254,7 @@ const Shop = () => {
       </section>
       <Footer />
     </>
+    </ThemeProvider>
   )
 }
 

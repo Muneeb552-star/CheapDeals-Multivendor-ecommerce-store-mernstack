@@ -81,9 +81,11 @@ const Products = ({ title, products }) => {
                   {/* Title - Price - Rating & Buttons */}
                   <div className="w-[70%] flex justify-start items-start gap-2 flex-col text-slate-600">
 
-                    <h2 className="text-md font-base text-gray-900 hover:text-[#6466E8] capitalize">
-                      {pl.name.length > 57 ? `${pl.name.slice(0, 57)}...` : pl.name}
-                    </h2>
+                    <Link to={`/product/details/${pl.slug}`}> 
+                      <h2 className="text-md font-base text-gray-900 hover:text-[#6466E8] capitalize">
+                        {pl.name.length > 57 ? `${pl.name.slice(0, 57)}...` : pl.name}
+                      </h2>
+                    </Link>
                     
                     {/* Product Rating - MUI Rating Component */}
                     <div className="flex flex-wrap items-center">

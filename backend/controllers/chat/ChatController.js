@@ -1,23 +1,29 @@
+/**
+ * Chat Controller
+ *
+ * This class defines methods for managing chat-related operations, including adding friends and retrieving messages.
+ */
 const sellerModel = require('../../models/sellerModel')
 const customerModel = require('../../models/customerModel')
 const sellerCustomerModal = require('../../models/chat/sellerCustomerModal')
 const sellerCustomerMessage = require('../../models/chat/sellerCustomerMessage')
 
-
-class chatController {
-
-    // Add Customer Friend Function
-
-    add_customer_friend = async (req, res) => {
+class ChatController {
+    
+    /**
+     * Add Customer Friend
+     *
+     * Adds a customer as a friend to a seller and vice versa in the chat system. This function handles both the creation
+     * of the friendship relationship and retrieval of messages between the friends.
+     */
+    async add_customer_friend(req, res) {
         const { sellerId, userId } = req.body
 
         try {
             if (sellerId !== '') {
-                // Find the seller and user by their respective IDs
                 const seller = await sellerModel.findById(sellerId) 
                 const user = await customerModel.findById(userId)
 
-                
                 // Check if the seller-customer relationship exists
                 const checkSeller = await sellerCustomerModal.findOne({
                     $and : [ { myId: { $eq: userId } }, { myFriends : { $elemMatch : { fdId: sellerId } } } ]
@@ -34,8 +40,7 @@ class chatController {
                                 image: seller.image
                             }
                         }
-                    }
-                    );
+                    });
                 }
 
                 // Check if the customer-seller relationship exists
@@ -82,11 +87,10 @@ class chatController {
             }
 
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             res.status(500).json('Internal Server Error')
         }
     }
 }
 
-
-module.exports = new chatController();
+module.exports = new ChatController();

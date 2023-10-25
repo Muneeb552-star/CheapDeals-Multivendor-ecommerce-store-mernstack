@@ -187,10 +187,11 @@ const ProductDetails = () => {
   return (
     <>
       <Headers />
-      <div className="bg-[#E1EBEE] py-5 mb-5 mt-3">
+      
+      <div className="bg-blue-50 py-5 mb-5 mt-3">
         <div className='w-[90%] h-full mx-auto'>
           <div className="flex flex-wrap justify-start items-center text-slate-600 text-base w-full">
-            <Link to="/" className='text-[#ed6c02]'>Home</Link>
+            <Link to="/" className='text-[#6466E8]'>Home</Link>
               <span className='pt-1'><MdOutlineKeyboardArrowRight /></span>
               <Link to="/">{product.category}</Link>
               <span className='pt-1'><MdOutlineKeyboardArrowRight /></span>
@@ -251,11 +252,11 @@ const ProductDetails = () => {
               {
                 product.discount 
                 ? <div className='flex items-center justify-center gap-3'>
-                    <span className='line-through text-slate-400 text-base font-medium'>${product.price}</span>
-                    <h2 className='text-2xl font-bold text-[#ed6c02]'>${product.price - Math.floor((product.price * product.discount) / 100)}</h2>
-                    <span className='text-sm font-semibold text-[#ed6c02]'>(-{product.discount}%)</span>
+                    <h2 className='text-2xl font-bold text-[#6466E8]'>${product.price - Math.floor((product.price * product.discount) / 100)}</h2>
+                    {/* <span className='text-sm font-semibold text-[#ed6c02]'>(-{product.discount}%)</span> */}
+                    <span className='line-through text-slate-400 text-base font-medium'>${product.price}</span> 
                   </div> 
-                : <h2 className='text-2xl font-medium text-[#ed6c02]'>Price: ${product.price}</h2>
+                : <h2 className='text-2xl font-medium text-[#6466E8]'>${product.price}</h2>
               }
             </div>
             
@@ -278,7 +279,7 @@ const ProductDetails = () => {
                     <div>
                       <button 
                         onClick={add_Cart}
-                        className='px-5 py-3 cursor-pointer hover:shadow-orange-500/40 bg-[#ed6c02] text-white whitespace-nowrap'>
+                        className='px-5 py-3 cursor-pointer hover:shadow-orange-500/40 bg-[#6466E8] text-white whitespace-nowrap'>
                           Add to Cart
                       </button>
                     </div>
@@ -290,8 +291,8 @@ const ProductDetails = () => {
                 onClick={add_wishlist}
                 className="w-[38px] h-[38px] flex justify-center items-center text-xl bg-white rounded-full border hover:shadow-md cursor-pointer transition-all flex-shrink-0">
                 <Checkbox
-                  icon={<MdOutlineFavoriteBorder className='text-[#ed6c02] text-xl'/>}
-                  checkedIcon={<MdFavorite className='text-[#ed6c02] text-xl'/>}
+                  icon={<MdOutlineFavoriteBorder className='text-black text-xl'/>}
+                  checkedIcon={<MdFavorite className='text-[#6466E8] text-xl'/>}
                   // checked={wishlist.productId === product._id ? true : false}
                 />
               </span>
@@ -313,16 +314,16 @@ const ProductDetails = () => {
 
                 <ul className='flex justify-start items-center gap-3'>
                   <li>
-                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoFacebook /></a>
+                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#6466E8] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoFacebook /></a>
                   </li>
                   <li>
-                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoTwitter /></a>
+                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#6466E8] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoTwitter /></a>
                   </li>
                   <li>
-                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoLinkedin /></a>
+                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#6466E8] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoLinkedin /></a>
                   </li>
                   <li>
-                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#ed6c02] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoGithub /></a>
+                    <a href='#' className='w-[38px] h-[38px] flex justify-center items-center bg-white hover:bg-[#6466E8] hover:text-white text-lg cursor-pointer shadow-md rounded-md'><BiLogoGithub /></a>
                   </li>
                 </ul>
 
@@ -433,13 +434,15 @@ const ProductDetails = () => {
                 {
                   related_products.map((p, i) => {
                     return (
+                      
                       <SwiperSlide key={i}>
                         <div  className="relative w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
+
                           {/* Discount - left */}
                           {
                             p.discount 
                             ? <div className='absolute top-2 left-1 flex justify-start items-center'>
-                                <span className="bg-orange-100 text-[#ed6c02] text-xs font-semibold mr-2 ml-3 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">{product.discount}%</span>
+                                <span className="bg-red-500 text-white text-xs font-semibold mr-2 ml-3 px-3 py-1 rounded-lg">{product.discount}%</span>
                               </div>
                             : ''
                           }
@@ -449,8 +452,8 @@ const ProductDetails = () => {
                           <div className='absolute top-2 right-2'>
                             <span className="w-[38px] h-[38px] flex justify-center items-center text-xl bg-white rounded-full border hover:shadow-md cursor-pointer transition-all flex-shrink-0">
                               <Checkbox
-                                icon={<MdOutlineFavoriteBorder className='text-[#ed6c02] text-xl'/>}
-                                checkedIcon={<MdFavorite className='text-[#ed6c02] text-xl'/>}
+                                icon={<MdOutlineFavoriteBorder className='text-black text-xl'/>}
+                                checkedIcon={<MdFavorite className='text-[#6466E8] text-xl'/>}
                               />
                             </span> 
                           </div>
@@ -462,12 +465,13 @@ const ProductDetails = () => {
 
                           {/* Product Body */}
                           <div className="px-5 pb-5 w-full">
+
                             {/* Product Title & price */}
                             <div className="flex flex-col gap-3">
                               <Link to={`/product/details/${p.slug}`}>
-                                <h5 className="text-md font-semibold tracking-tight text-gray-900 dark:text-white">{p.name}</h5>
+                                <h5 className="text-md font-semibold tracking-tight text-gray-900 hover:text-[#6466E8] dark:text-white">{p.name}</h5>
                               </Link>
-                              <span className="text-lg font-bold text-[#ed6c02]">${p.price}</span>
+                              <span className="text-lg font-bold text-[#EF262C]">${p.price}</span>
                             </div>
 
                             {/* Product Rating - MUI Rating Component */}
@@ -487,10 +491,12 @@ const ProductDetails = () => {
                 }
               </Swiper>
             </div>
+
             {/* Pagination */}
             <div className="w-full flex justify-center items-center py-10">
               <div className="custom_bullet flex justify-center gap-3 !w-auto"></div>
             </div>
+            
         </div>
       </section>
       <Footer />

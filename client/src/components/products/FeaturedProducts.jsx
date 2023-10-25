@@ -105,6 +105,7 @@ const FeaturedProducts = ({ products }) => {
 
               {/* Product Body */}
               <div className="px-4 pb-3 w-full">
+                
                 {/* Product Title & price */}
                 <div className="flex flex-col gap-1">
                   <Link to={`/product/details/${product.slug}`} className='min-h-[50px]'>

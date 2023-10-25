@@ -198,34 +198,38 @@ const Headers = () => {
                 
                 {/* User Profile and Login */}
                 <div className="flex items-center justify-between gap-3 md:hidden">
+
                   <div className="w-[45px] h-[45px] flex items-center justify-center rounded-full border-2 border-slate-300">
                     <span className='text-2xl flex items-center justify-center text-center text-slate-500'><AiOutlineUser /></span>
                   </div>
+
                   <div className="flex flex-col">
                     <span className='text-slate-500 text-xs font-medium'>Hello</span>
                     {
                       userInfo 
-                      ? <Link to="/dashboard"><span className='text-slate-700 text-sm font-medium cursor-pointer hover:text-[#ed6c02] '>{userInfo.name}</span></Link>
-                      :  <Link to="/login"><span className='text-slate-700 text-sm font-medium cursor-pointer hover:text-[#ed6c02]'>Sign in</span></Link>
+                      ? <Link to="/dashboard"><span className='text-slate-700 text-sm font-medium cursor-pointer'>{userInfo.name}</span></Link>
+                      :  <Link to="/login"><span className='text-slate-700 text-sm font-medium cursor-pointer'>Sign in</span></Link>
                     }
                   </div>
+
                 </div>
 
                   {/* Cart & Wishlist Icon */}
                   <div className="flex items-center justify-between gap-3">
                     <Link>
-                      <div className="relative w-[45px] h-[45px] flex items-center justify-center rounded-full bg-orange-50 cursor-pointer md:hidden">
-                        <span className='text-2xl flex items-center justify-center text-center text-orange-600 '><MdOutlineFavoriteBorder /></span>
-                        <div className="w-[20px] h-[20px] absolute flex items-center justify-center -top-[3px] -right-[5px] rounded-full bg-orange-600 text-white">5</div>
+                      <div className="relative w-[45px] h-[45px] flex items-center justify-center rounded-full bg-slate-50  cursor-pointer md:hidden">
+                        <span className='text-2xl flex items-center justify-center text-center'><MdOutlineFavoriteBorder /></span>
+                        <div className="w-[20px] h-[20px] absolute flex items-center justify-center -top-[3px] -right-[5px] rounded-full bg-[#FF456c] text-white">5</div>
                       </div>
                     </Link>
                     <div onClick={redirect_cart_page}>
-                      <div className="relative w-[45px] h-[45px] flex items-center justify-center rounded-full bg-orange-50 cursor-pointer">
-                        <span className='text-2xl flex items-center justify-center text-center text-orange-600 '><BiShoppingBag /></span>
+                      <div className="relative w-[45px] h-[45px] flex items-center justify-center rounded-full bg-slate-50 cursor-pointer">
+                        <span className='text-2xl flex items-center justify-center text-center'><BiShoppingBag /></span>
                         {
-                          cart_products_count !== 0 &&  <div className="w-[20px] h-[20px] absolute flex items-center justify-center -top-[3px] -right-[5px] rounded-full bg-orange-600 text-white">
-                            {cart_products_count}
-                          </div>
+                          cart_products_count !== 0 &&  
+                            <div className="w-[20px] h-[20px] absolute flex items-center justify-center -top-[3px] -right-[5px] rounded-full bg-[#FF456c] text-white">
+                                {cart_products_count}
+                            </div>
                         }
                       </div>
                     </div>
@@ -339,19 +343,19 @@ const Headers = () => {
                 <div className="flex justify-between items-center flex-wrap w-[100%]">
                   <ul className='flex justify-start items-start gap-8 text-sm font-bold uppercase'>
                     <li>
-                      <Link to='/' className={`p-2 block hover:text-[#ed6c02]`}>Home</Link>
+                      <Link to='/' className={`p-2 block hover:text-[#6466E8]`}>Home</Link>
                     </li>
                     <li>
-                      <Link to='/shop' className={`p-2 block hover:text-[#ed6c02] ${pathname === '/shop' ? 'text-[#ed6c02]' : 'text-slate-500'}`}>Shop</Link>
+                      <Link to='/shop' className={`p-2 block hover:text-[#6466E8] ${pathname === '/shop' ? 'text-[#6466E8]' : 'text-slate-500'}`}>Shop</Link>
                     </li>
                     <li>
-                      <Link className={`p-2 block hover:text-[#ed6c02] ${pathname === '/blog' ? 'text-[#ed6c02]' : 'text-slate-500'}`}>Blog</Link>
+                      <Link className={`p-2 block hover:text-[#6466E8] ${pathname === '/blog' ? 'text-[#6466E8]' : 'text-slate-500'}`}>Blog</Link>
                     </li>
                     <li>
-                      <Link className={`p-2 block hover:text-[#ed6c02] ${pathname === '/about' ? 'text-[#ed6c02]' : 'text-slate-500'}`}>About</Link>
+                      <Link className={`p-2 block hover:text-[#6466E8] ${pathname === '/about' ? 'text-[#6466E8]' : 'text-slate-500'}`}>About</Link>
                     </li>
                     <li>
-                      <Link className={`p-2 block hover:text-[#ed6c02] ${pathname === '/contact' ? 'text-[#ed6c02]' : 'text-slate-500'}`}>Contact</Link>
+                      <Link className={`p-2 block hover:text-[#6466E8] ${pathname === '/contact' ? 'text-[#6466E8]' : 'text-slate-500'}`}>Contact</Link>
                     </li>
                   </ul>
                 </div>
@@ -361,10 +365,10 @@ const Headers = () => {
               <div className='w-3/12'>
                 <div className="flex justify-center items-center w-[100%]">
                   <div className="flex justify-center items-center gap-3">
-                    <span className='text-2xl flex items-center justify-center text-center text-[#ed6c02]'><FiPhoneCall /></span>
+                    <span className='text-2xl flex items-center justify-center text-center text-[#6466E8]'><FiPhoneCall /></span>
                     <div className="flex flex-col gap-0">
                       <span className='text-slate-500 text-xs font-medium'>Hotline:</span>
-                      <span className='text-slate-700 text-sm font-medium cursor-pointer hover:text-[#ed6c02]'>+(402) 763 282 46</span>
+                      <span className='text-slate-700 text-sm font-medium cursor-pointer'>+(402) 763 282 46</span>
                     </div>
                   </div>
                 </div>
