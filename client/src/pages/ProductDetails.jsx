@@ -25,7 +25,6 @@ import { Pagination } from 'swiper/modules'
 
 
 
-
 const ProductDetails = () => {
   const { slug } = useParams()
   const navigate = useNavigate()
@@ -40,7 +39,7 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1)
 
 
-  /* Here we will set the Carousel responsiveness. Responsive Screen Sizes for different screens/devices */
+  /* Responsive settings for the carousel */
   const responsive = {
     superLargeDesktop : {
       breakpoint : { max: 4000, min: 3000 },
@@ -73,7 +72,20 @@ const ProductDetails = () => {
   }
 
 
-  /* This function will increase cart Item quantity if stock is greater than quantity */
+
+  /* Fetch product details by slug */
+  useEffect(() => {
+    dispatch(get_product(slug))
+  }, [slug])
+
+
+  /* Scroll to the top of the page when component mounts */
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+
+  /* Increase quantity if stock allows */
   const increase_quantity = () => {
     if (quantity >= product.stock) {
       toast.error('No more quantity available')
@@ -82,14 +94,14 @@ const ProductDetails = () => {
     }
   }
 
-  /* This function will decrease cart Item quantity if stock is greater than quantity */
+  /* Decrease quantity if quantity is greater than 1 */
   const decrease_quantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1)
     }
   }
 
-  /* This function will add product to cart */
+  /* Add the product to the cart */
   const add_Cart = () => {
     if (userInfo) {
         dispatch(add_to_cart({
@@ -103,7 +115,7 @@ const ProductDetails = () => {
   }
 
 
-  /* This function will add product to wishlist */
+  /* Add the product to the wishlist */
   const add_wishlist = () => {
     if (userInfo) {
       dispatch(add_to_wishlist({
@@ -121,7 +133,7 @@ const ProductDetails = () => {
     }
   }
 
-  /* The following function will perform the buy now functionality */
+  /* Perform the "Buy Now" functionality */
   const buy_now = () => {
     let price = 0
     if (product.dicount > 0) {
@@ -154,13 +166,19 @@ const ProductDetails = () => {
     })
   }
 
-  /* This function will get product details by product slug */
+  /* Fetch product by slug */
   useEffect(() => {
     dispatch(get_product(slug))
   }, [slug])
 
 
-  /* This useEffect hook will show success - error messages on state change */
+  /* Scrools page to the top */
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+
+  /* Show success and error messages when they change */
   useEffect(() => {
     if(errorMessage) {
       toast.error(errorMessage)
@@ -174,13 +192,14 @@ const ProductDetails = () => {
 
   }, [errorMessage, successMessage, dispatch])
 
-    /* This useEffect hook will get all reviews related to this product */
-    useEffect(() => {
-      if(product._id) {
-          dispatch(get_reviews({
-              productId: product._id,
-              pageNumber: ''
-          }))
+
+  /* Fetch reviews related to this product */
+  useEffect(() => {
+    if(product._id) {
+        dispatch(get_reviews({
+            productId: product._id,
+            pageNumber: ''
+        }))
       }
     }, [product, dispatch])
 
@@ -484,6 +503,7 @@ const ProductDetails = () => {
                             <div className="flex items-center justify-start flex-wrap gap-4 w-full translate-all duration-500">
                               <span className="text-white bg-[#ed6c02] font-medium rounded-lg text-sm px-3.5 py-2.5 text-center hover:bg-[#ea580c] cursor-pointer transition-all whitespace-nowrap w-full">Add to cart</span>
                             </div>
+                            
                           </div>
                         </div>
                       </SwiperSlide>
@@ -499,7 +519,9 @@ const ProductDetails = () => {
             
         </div>
       </section>
+
       <Footer />
+
     </>
   )
 }
