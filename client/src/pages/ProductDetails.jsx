@@ -9,7 +9,7 @@ import { add_to_cart, add_to_wishlist, clearMessage } from '../store/reducers/ca
 import { toast } from 'react-hot-toast'
 // Swiper styles
 import 'swiper/css'
-import 'swiper/css/pagination';
+import 'swiper/css/pagination'
 // MUI Imports
 import { Rating, Checkbox } from '@mui/material'
 // React-icons Import
@@ -94,12 +94,14 @@ const ProductDetails = () => {
     }
   }
 
+  
   /* Decrease quantity if quantity is greater than 1 */
   const decrease_quantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1)
     }
   }
+
 
   /* Add the product to the cart */
   const add_Cart = () => {
@@ -133,6 +135,7 @@ const ProductDetails = () => {
     }
   }
 
+
   /* Perform the "Buy Now" functionality */
   const buy_now = () => {
     let price = 0
@@ -165,6 +168,7 @@ const ProductDetails = () => {
       }
     })
   }
+
 
   /* Fetch product by slug */
   useEffect(() => {

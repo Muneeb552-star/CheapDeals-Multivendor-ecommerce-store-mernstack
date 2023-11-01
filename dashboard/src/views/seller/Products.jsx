@@ -49,6 +49,7 @@ const Products = () => {
 
   const handleSearch = (e) => setSearchQuery(e.target.value)
 
+
   /* 
     This function will show/filter the products searched through search bar. 
     When the 'searchQuery' value gets changed, this function will be called. 

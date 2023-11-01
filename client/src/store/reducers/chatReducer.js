@@ -8,11 +8,23 @@ export const add_friend = createAsyncThunk(
      async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
         const { data } = await api.post('/chat/customer/add-customer-friend', info, { withCredentials: true })
-        console.log('API Response:', data); // Debugging statement
-        return fulfillWithValue(data);
+        return fulfillWithValue(data)
+
     } catch (error) {
-        console.error('API Error:', error); // Debugging statement
         return rejectWithValue(error.response.data);
+    }
+});
+
+
+export const send_message = createAsyncThunk(
+    'chat/send_message',
+     async (info, { rejectWithValue, fulfillWithValue }) => {
+    try {
+        const { data } = await api.post('/chat/customer/send-message-to-seller', info, { withCredentials: true })
+        return fulfillWithValue(data)
+
+    } catch (error) {
+        return rejectWithValue(error.response.data)
     }
 });
 
@@ -39,6 +51,21 @@ export const chatReducer = createSlice({
             state.fd_messages = payload.messages
             state.currentFd = payload.currentFd
             state.my_friends = payload.myFriends
+        },
+        [send_message.fulfilled]: (state, { payload }) => {
+            let tempFriends = state.my_friends
+            let index = tempFriends.findIndex( f => f.idId === payload.message.receiverId )
+
+            while ( index > 0 ) {
+                let temp = tempFriends[index]
+                tempFriends[index] = tempFriends[index - 1]
+                tempFriends[index - 1] = temp
+                index--
+            }
+
+            state.my_friends = tempFriends
+            state.fd_messages = [...state.fd_messages, payload.message]
+            state.successMessage = ' Message Sent Successfully '
         },
     }
 })

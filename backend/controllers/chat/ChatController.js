@@ -16,7 +16,8 @@ class ChatController {
      * Adds a customer as a friend to a seller and vice versa in the chat system. This function handles both the creation
      * of the friendship relationship and retrieval of messages between the friends.
      */
-    async add_customer_friend(req, res) {
+    add_customer_friend = async (req, res) => {
+
         const { sellerId, userId } = req.body
 
         try {
@@ -89,6 +90,54 @@ class ChatController {
         } catch (error) {
             // console.log(error)
             res.status(500).json('Internal Server Error')
+        }
+    }
+
+
+    send_customer_message = async (req, res) => {
+        const { userId, text, sellerId, name } = req.body
+
+        try {
+            const message = await sellerCustomerMessage.create({
+                senderId: userId,
+                senderName: name,
+                receiverId: sellerId,
+                message: text
+            })
+
+            const data = await sellerCustomerModal.findOne({ myId: userId })
+            let myFriends = data.myFriends
+            let index = myFriends.findIndex( f => f.fdId === sellerId )
+
+            while( index > 0 ) {
+                let temp = myFriends[index]
+                myFriends[index] = myFriends[index -1]
+                myFriends[index - 1] = temp
+                index--
+            }
+
+            await sellerCustomerModal.updateOne({ myId: userId }, { myFriends })
+
+            const data1 =  await sellerCustomerModal.findOne({ myId: sellerId })
+            let myFriends1 = data1.myFriends
+            let index1 = myFriends1.findIndex( f => f.idId === userId )
+
+            while( index1 > 0 ) {
+                let temp1 = myFriends1[index1]
+                myFriends1[index1] = myFriends1[index1 -1]
+                myFriends1[index1 - 1] = temp1
+                index1--
+            }
+
+            await sellerCustomerModal.updateOne({ myId: sellerId }, { myFriends1 })
+
+            res.status(201).json({ message })
+
+
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: "Internal Server Message" })
+
         }
     }
 }

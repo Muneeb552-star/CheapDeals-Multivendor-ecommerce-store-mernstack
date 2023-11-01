@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlineMessage, AiOutlinePlus} from 'react-icons/ai'
 import { GrEmoji } from 'react-icons/gr'
 import { IoSend } from 'react-icons/io5'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { add_friend } from '../../store/reducers/chatReducer'
+import { add_friend, send_message } from '../../store/reducers/chatReducer'
 // Socket io imports
 import io from 'socket.io-client'
 
@@ -15,12 +15,11 @@ const Chat = () => {
   const dispatch = useDispatch()
   const { sellerId } = useParams()
 
+  const [text, setText] = useState('')
   const { userInfo } = useSelector( state => state.auth )
   const { fd_messages, currentFd, my_friends } = useSelector( state => state.chat )
 
-  console.log(`My friends are: ${my_friends}`)
-  console.log(`My messages are: ${fd_messages}`)
-  console.log(`My current friend are: ${currentFd}`)
+  console.log(`friends id is ${my_friends}`)
 
 //   useEffect(() => {
 //     socket.emit('add_user', userInfo.id, userInfo)
@@ -34,14 +33,28 @@ const Chat = () => {
 //   }, [sellerId, dispatch, userInfo])
 
 
+    /* Emit socket event and dispatch the add_friend action */
     useEffect(() => {
-        // Emit socket event and dispatch the add_friend action
-        socket.emit('add_user', userInfo.id, userInfo);
+        socket.emit('add_user', userInfo.id, userInfo)
             dispatch(add_friend({
                 sellerId: sellerId || "",
                 userId: userInfo.id
             }));
-    }, [dispatch, sellerId, userInfo]);
+    }, [dispatch, sellerId, userInfo])
+
+
+    const send = () => {
+        if (text) {
+            dispatch(send_message({
+                userId: userInfo.id,
+                text,
+                sellerId,
+                name: userInfo.name
+            }))
+
+            setText("")
+        }
+    }
   
 
   return (
@@ -118,14 +131,14 @@ const Chat = () => {
                         </div>
 
                         <div className="border h-[40px] p-0 ml-2 w-[calc(100% - 90px)] w-full rounded-full relative ">
-                            <input type="text" placeholder='Send Message' className='w-full rounded-full h-full outline-none p-3' />
+                            <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder='Send Message' className='w-full rounded-full h-full outline-none p-3' />
                             <div className="text-2xl right-2 top-2 absolute cursor-auto">
                                 <span><GrEmoji /></span>
                             </div>
                         </div>
 
                         <div className='w-[40px] p-2 justify-center items-center rounded-full'>
-                            <div className='text-2xl cursor-pointer'>
+                            <div onClick={send} className='text-2xl cursor-pointer'>
                                 <IoSend />
                             </div>
                         </div>
