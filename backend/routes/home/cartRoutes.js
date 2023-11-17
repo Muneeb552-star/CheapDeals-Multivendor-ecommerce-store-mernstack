@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const cartController = require('../../controllers/home/cartController')
 
-router.get('/product/get-cart-products/:userId', cartController.get_cart_products)
+router.get('/product/get-cart-products/:userId', cartController.getCartProducts)
 router.get('/product/get-wishlist-products/:userId', cartController.get_wishlist_products)
 
 router.post('/product/add-to-cart', cartController.add_to_cart)

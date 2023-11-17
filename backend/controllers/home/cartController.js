@@ -60,8 +60,8 @@ class cartController {
                 },
                 {
                     $lookup: {
-                        from: 'products',
-                        localField: 'productId',
+                        from: 'products',   // products documentation
+                        localField: 'productId',  //specifies the field from the "cartModel" documents
                         foreignField: '_id',
                         as: 'products'
                     }
@@ -158,8 +158,99 @@ class cartController {
              });
 
         } catch (error) {
-            console.log(error.message);
             res.status(500).json({ error: 'Internal Server Error' }); 
+        }
+    }
+
+    // Method to get cart products for a specific user
+    getCartProducts = async (req, res) => {
+        const { userId } = req.params;
+
+        try {
+            // Aggregate to fetch cart products and perform a lookup to get product details
+            const cartProducts = await cartModel.aggregate([
+                {
+                    $match: {
+                        userId: new ObjectId(userId),
+                    },
+                },
+                {
+                    $lookup: {
+                        from: 'products',
+                        localField: 'productId',
+                        foreignField: '_id',
+                        as: 'productDetails',
+                    },
+                }
+            ]);
+
+            // Function to calculate the final price for a product
+            const calculatePrice = (price, discount, quantity) => {
+                const discountedPrice = discount !== 0 ? price - Math.floor((price * discount) / 100) : price;
+                // return discountedPrice + Math.floor((discountedPrice * commission) / 100) * quantity;   // If we want to add comission, add here
+                return Math.ceil(discountedPrice * quantity);
+            };
+
+            let totalPrice = 0;
+            let cartProductsCount = 0;
+            const outOfStockProducts = [];
+
+            // Formatted cart object to store organized product information
+            const formattedCart = cartProducts.reduce((result, item) => {
+                const { productDetails, quantity } = item;
+                const product = productDetails[0];
+                const productId = product._id.toString();
+
+                // Check if the product is out of stock
+                if (product.stock < quantity) {
+                    outOfStockProducts.push(productId);
+                    return result;
+                }
+
+                // Initialize seller information in the formattedCart object
+                if (!result[productId]) {
+                    result[productId] = {
+                        sellerId: product.sellerId.toString(),
+                        shopName: product.shopName,
+                        price: 0,
+                        products: [],
+                    };
+                    cartProductsCount++;
+                }
+
+                // Determine the stock label based on the product's availability
+                const label = product.stock >= quantity ? 'In Stock' : 'Out of Stock';
+
+                // Calculate and update the price for the current product
+                const productPrice = calculatePrice(product.price, product.discount, quantity);
+                result[productId].price += productPrice;
+
+                // Add the product details to the formattedCart object
+                result[productId].products.push({
+                    _id: item._id,
+                    quantity,
+                    productInfo: { ...product, stockLabel: label },
+                });
+
+                // Update the total price
+                totalPrice += productPrice;
+
+                return result;
+            }, {});
+
+            // Calculate shipping_fee based on the total number of products
+            const shippingFee = 70 * Object.keys(formattedCart).length;
+
+            // Send the formatted response
+            res.status(201).json({
+                cart_products: Object.values(formattedCart),
+                price: totalPrice,
+                cart_products_count: cartProductsCount,
+                shipping_fee: shippingFee,
+                outOfStockProduct: outOfStockProducts,
+            });
+        } catch (error) {
+            res.status(500).json({ error: 'Internal Server Error' });
         }
     }
 
@@ -261,6 +352,7 @@ class cartController {
             res.status(500).json({ error: 'Internal Server error' })
         }
     }
+
 }
 
 // Export an instance of the cartController class
