@@ -102,7 +102,7 @@ const AddProduct = () => {
   const [allCategory, setAllCategory] = useState([])
   const [images, setImages] = useState([])
   const [imageShow, setImageShow] = useState([])
-  console.log(images)
+  // console.log(images)
 
   /*
     This Function is used to handle the image upload.
@@ -167,10 +167,11 @@ const AddProduct = () => {
     formData.append('brand', state.brand)
     formData.append('shopName', 'Cheap Deals')
     formData.append('stock', state.stock)
+
     for (let i = 0; i < images.length; i++) {
       formData.append('images', images[i])
     }
-    console.log(formData.images)
+    
     dispatch(add_product(formData))
   }
 

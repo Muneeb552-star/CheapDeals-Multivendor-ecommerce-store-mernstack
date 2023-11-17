@@ -1,5 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api/api";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import api from "../../api/api"
+import { getAccessToken } from '../../utils/tokenUtils'
 
 /* 
     This function will add/insert categories into database.
@@ -12,7 +13,15 @@ export const add_category = createAsyncThunk(
         const formData = new FormData()
         formData.append('name', name)
         formData.append('image', image)
-        const { data } = await api.post('/add-category', formData, { withCredentials: true })
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.post('/add-category', formData, { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
 
   } catch (error) {
@@ -28,7 +37,15 @@ export const get_categories = createAsyncThunk(
     'category/get_categories',
      async ( _ , { rejectWithValue, fulfillWithValue }) => {
     try {
-        const { data } = await api.get('/get-categories', { withCredentials: true })
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.get('/get-categories', { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
 
   } catch (error) {

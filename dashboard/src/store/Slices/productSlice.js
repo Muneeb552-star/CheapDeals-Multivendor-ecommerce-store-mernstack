@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api/api";
+import api from "../../api/api"
+import { getAccessToken } from '../../utils/tokenUtils'
 
 /* 
     This function will add/insert categories into database.
@@ -9,8 +10,17 @@ export const add_product = createAsyncThunk(
     'product/add_product',
      async ( product, { rejectWithValue, fulfillWithValue }) => {
     try {
-        const { data } = await api.post('/add-product', product, { withCredentials: true })
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.post('/add-product', product, { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
+
   } catch (error) {
       return rejectWithValue(error.response.data)
   }
@@ -24,9 +34,17 @@ export const update_product = createAsyncThunk(
     'product/update_product',
      async ( product, { rejectWithValue, fulfillWithValue }) => {
     try {
-        const { data } = await api.post('/update-product', product, { withCredentials: true })
-        console.log(data)
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.post('/update-product', product, { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
+
   } catch (error) {
       return rejectWithValue(error.response.data)
   }
@@ -41,9 +59,17 @@ export const update_product_image = createAsyncThunk(
     'product/update_product_image',
      async ( imageData, { rejectWithValue, fulfillWithValue }) => {
     try {
-        const { data } = await api.post('/update-product-image', imageData, { withCredentials: true })
-        console.log(data)
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.post('/update-product-image', imageData, { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
+
   } catch (error) {
       return rejectWithValue(error.response.data)
   }
@@ -57,10 +83,18 @@ export const get_products = createAsyncThunk(
     'product/get_products',
      async ( _ , { rejectWithValue, fulfillWithValue }) => {
     try {
-        const { data } = await api.get('/get-products', { withCredentials: true })
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.get('/get-products', { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
+
   } catch (error) {
-      console.log(error.response.data)
       return rejectWithValue(error.response.data)
   }
 })
@@ -74,10 +108,18 @@ export const get_product = createAsyncThunk(
     'product/get_product',
      async ( productId , { rejectWithValue, fulfillWithValue }) => {
     try {
-        const { data } = await api.get(`/get-product/${productId}`, { withCredentials: true })
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.get(`/get-product/${productId}`, { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
+
   } catch (error) {
-      console.log(error.response.data)
       return rejectWithValue(error.response.data)
   }
 })
@@ -85,13 +127,21 @@ export const get_product = createAsyncThunk(
 /* 
     Get categories function with pagination 
 */
+
+
 // export const get_categories = createAsyncThunk(
 //     'category/get_categories',
 //      async ( { perPage, page, searchValue } , { rejectWithValue, fulfillWithValue }) => {
 //     try {
-        
-//         const { data } = await api.get(`/get-categories?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`, { withCredentials: true })
-//         console.log(data)
+
+//         const accessToken = getAccessToken()
+
+//         const { data } = await api.get(`/get-categories?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`, { 
+//             withCredentials: true,
+//             headers: {
+//                 'Authorization': `Bearer ${accessToken}`
+//             } 
+//         })
 //         return fulfillWithValue(data)
 
 //   } catch (error) {

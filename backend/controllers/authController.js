@@ -1,4 +1,3 @@
-
 const adminModel = require('../models/adminModel'); 
 const sellerModel = require('../models/sellerModel'); 
 const sellerCustomerModal = require('../models/chat/sellerCustomerModal'); 
@@ -78,7 +77,8 @@ class authControllers {
             res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
 
             // Send token in the response to the server
-            responseReturn(res, 200, { accessToken: tokens.accessToken, message: "Login Successful" });
+            // responseReturn(res, 201, { accessToken: tokens.accessToken, message: "Login Successful" });
+            res.status(201).json({ accessToken: tokens.accessToken, message: "Login Successful" })
 
         } catch (error) {
             responseReturn(res, 500, { error: error.message }); // Handle internal server errors with a 500 Internal Server Error response
@@ -87,11 +87,12 @@ class authControllers {
 
     // Seller Registration Function
     seller_register = async (req, res) => {
-        const { email, name, password } = req.body; // Extract email, name, and password from the request body
+        const { email, name, password } = req.body
         try {
             const getUser = await sellerModel.findOne({ email });
+
             if (getUser){
-                responseReturn(res, 404, { error: 'Email already exists' }); // Return a 404 Not Found response if the email already exists
+                responseReturn(res, 404, { error: 'Email already exists' })
             } else {
                 const seller = await sellerModel.create({
                     name,
@@ -113,24 +114,24 @@ class authControllers {
                 responseReturn(res, 200, { accessToken: tokens.accessToken, message: "Register Successful" });
             }
         } catch (error) {
-            responseReturn(res, 500, { error: 'Internal Server Error' }); // Handle internal server errors with a 500 Internal Server Error response
+            responseReturn(res, 500, { error: 'Internal Server Error' })
         }
     }
 
     // Get User Information Function
     getUserInfo = async (req, res) => {
-        const { id, role } = req.user; // Extract user ID and role from the request user object
+        const { id, role } = req.user
         try {
             if (role === 'admin') {
-                const admin = await adminModel.findById(id);
-                responseReturn(res, 200, { userInfo: admin }); // Return admin user information
+                const admin = await adminModel.findById(id)
+                responseReturn(res, 200, { userInfo: admin })
             } else {
                 const seller = await sellerModel.findById(id);
-                responseReturn(res, 200, { userInfo: seller }); // Return seller user information
+                responseReturn(res, 200, { userInfo: seller })
             }
             
         } catch (error) {
-            responseReturn(res, 500, { error: 'Internal Server Error' }); // Handle internal server errors with a 500 Internal Server Error response
+            responseReturn(res, 500, { error: 'Internal Server Error' })
         }
     }
 
@@ -155,16 +156,16 @@ class authControllers {
             });
 
             try {
-                const result = await cloudinary.uploader.upload(image.filepath, { folder: 'profile' });
+                const result = await cloudinary.uploader.upload(image.filepath, { folder: 'profile' })
                 if (result) {
                     await sellerModel.findByIdAndUpdate(id, { image: result.url });
                     const userInfo = await sellerModel.findById(id);
-                    responseReturn(res, 200, { userInfo, message: 'Image Uploaded Successfully !' }); // Return a 200 OK response with the uploaded image URL
+                    responseReturn(res, 200, { userInfo, message: 'Image Uploaded Successfully !' })
                 } else {
-                    responseReturn(res, 404, { error: 'Image upload failed' }); // Return a 404 Not Found response if image upload fails
+                    responseReturn(res, 404, { error: 'Image upload failed' })
                 }
            } catch (error) {
-               responseReturn(res, 500, { error: error.message }); // Handle internal server errors with a 500 Internal Server Error response
+               responseReturn(res, 500, { error: error.message })
            }
 
         });
@@ -172,8 +173,8 @@ class authControllers {
 
     // Method to update profile info
     update_profile = async (req, res) => {
-        const { shopName, address, phone } = req.body; // Extract shop name, address, and phone from the request body
-        const { id } = req.user; // Extract user ID from the request user object
+        const { shopName, address, phone } = req.body
+        const { id } = req.user
 
         try {
             await sellerModel.findByIdAndUpdate(id, {
@@ -184,9 +185,9 @@ class authControllers {
                 }
             });
             const userInfo = await sellerModel.findById(id);
-            responseReturn(res, 201, { userInfo, message: 'Profile Added Successfully !' }); // Return a 201 Created response with the updated user information
+            responseReturn(res, 201, { userInfo, message: 'Profile Added Successfully !' })
         } catch (error) {
-            responseReturn(res, 500, { error: error.message }); // Handle internal server errors with a 500 Internal Server Error response
+            responseReturn(res, 500, { error: error.message })
         }
     }
 }

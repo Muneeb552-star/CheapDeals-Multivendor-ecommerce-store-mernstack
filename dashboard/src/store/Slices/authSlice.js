@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import jwtDecode from 'jwt-decode';
 import api from "../../api/api";
+import { getAccessToken } from '../../utils/tokenUtils'
 
 export const admin_login = createAsyncThunk(
     'async/admin_login',
@@ -19,18 +20,20 @@ export const admin_login = createAsyncThunk(
 
 export const seller_login = createAsyncThunk(
     'async/seller_login',
-     async (info, { rejectWithValue, fulfillWithValue }) => {
-    try {
+    async (info, { rejectWithValue, fulfillWithValue }) => {
+      try {
+
         const { data } = await api.post('/seller-login', info, { withCredentials: true })
-        // set the access token into localStorage here
+
         localStorage.setItem('accessToken', data.accessToken)
         return fulfillWithValue(data)
 
-  } catch (error) {
-    //   console.log(error.response.data)
-      return rejectWithValue(error.response.data)
-  }
-})
+      } catch (error) {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+  
 
 export const seller_register = createAsyncThunk(
     'async/seller_register',
@@ -52,20 +55,39 @@ export const profile_image_upload = createAsyncThunk(
     'async/profile_image_upload',
      async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
-        const { data } = await api.post('/profile-image-upload', info, { withCredentials: true })
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.post('/profile-image-upload', info, { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
+
   } catch (error) {
     //   console.log(error.response.data)
       return rejectWithValue(error.response.data)
   }
 })
+
 
 export const update_profile = createAsyncThunk(
     'async/update_profile',
      async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
-        const { data } = await api.post('/update-profile', info, { withCredentials: true })
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.post('/update-profile', info, { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
+
   } catch (error) {
     //   console.log(error.response.data)
       return rejectWithValue(error.response.data)
@@ -73,16 +95,23 @@ export const update_profile = createAsyncThunk(
 })
 
 
-
 export const get_user_details = createAsyncThunk(
     'async/get_user_details',
      async (_, { rejectWithValue, fulfillWithValue }) => {
+
     try {
-        const { data } = await api.get('/get-user', { withCredentials: true })
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.get('/get-user', { 
+            withCredentials: true, 
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
 
   } catch (error) {
-    //   console.log(error.response.data)
       return rejectWithValue(error.response.data)
   }
 })
@@ -92,17 +121,18 @@ const returnRole = (token) => {
     if (token) {
         const decodedToken = jwtDecode(token)
         const tokenExpireTime = new Date(decodedToken.exp * 1000)
+
         if (new Date() > tokenExpireTime) {
             localStorage.removeItem('accessToken')
             return ''
         } else {
             return decodedToken.role
         }
+
     } else {
         return ''
     }
 }
-
 
 
 
@@ -129,12 +159,12 @@ export const authSlice = createSlice({
         },
         [admin_login.rejected] : (state, { payload }) => {
             state.loader = false
-            state.errorMessage = payload.error // Set the error message in case of error in login
+            state.errorMessage = payload.error 
         },
         [admin_login.fulfilled]: (state, { payload }) => {
             state.loader = false;
-            state.successMessage = payload.message; // Reset the error message on successful login
-            state.userInfo = payload.userInfo; // Set the user info
+            state.successMessage = payload.message
+            state.userInfo = payload.userInfo
             state.token = payload.accessToken
             state.role = returnRole(payload.accessToken)
         },

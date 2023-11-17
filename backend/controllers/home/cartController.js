@@ -45,7 +45,7 @@ class cartController {
 
     // Method to get cart products for a specific user
     get_cart_products = async (req, res) => {
-        const { userId } = req.params; // Extract the user ID from the request parameters
+        const { userId } = req.params
         const comission = 5;
 
         try {
