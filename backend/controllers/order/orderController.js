@@ -92,6 +92,82 @@ class cartController {
         }
     }
 
+    // Method to place a new order - Copy of the 1st method
+    placeOrder = async (req, res) => {
+        try {
+            const { price, products, shipping_fee, shippingInfo, userId } = req.body;
+
+            // Arrays to store order-related data
+            const customerOrderProducts = [];
+            const cartIds = [];
+            const tempDate = moment(Date.now()).format('LLL');
+            const authorOrderData = [];
+
+            // Processing customer order data
+            products.forEach(productGroup => {
+                productGroup.products.forEach(product => {
+                    // Collecting customer order product details
+                    const tempCustomerProduct = product.productInfo;
+                    customerOrderProducts.push(tempCustomerProduct);
+
+                    // Collecting cart IDs for deletion
+                    if (product._id) {
+                        cartIds.push(product._id);
+                    }
+                });
+            });
+
+            // Creating a customer order
+            const order = await customerOrder.create({
+                customerId: userId,
+                shippingInfo,
+                products: customerOrderProducts,
+                price: price + shipping_fee,
+                delivery_status: 'pending',
+                payment_status: 'unpaid',
+                date: tempDate
+            });
+
+            // Processing author order data
+            products.forEach(productGroup => {
+                const storePro = productGroup.products.map(product => ({
+                    ...product.productInfo,
+                    quantity: product.quantity
+                }));
+
+                // Collecting data for author order
+                authorOrderData.push({
+                    orderId: order.id,
+                    sellerId: productGroup.sellerId,
+                    products: storePro,
+                    price: productGroup.price,
+                    payment_status: 'unpaid',
+                    shippingInfo: 'daska CheapDeals Warehouse',
+                    delivery_status: 'pending',
+                    date: tempDate
+                });
+            });
+
+            // Inserting author order data
+            await authorModel.insertMany(authorOrderData);
+
+            // Deleting products from the cart
+            for (const cartId of cartIds) {
+                await cartModel.findByIdAndDelete(cartId);
+            }
+
+            // Checking payment status asynchronously after 5 seconds
+            setTimeout(() => {
+                this.paymentCheck(order.id);
+            }, 5000);
+
+            res.status(201).json({ message: 'Order Placed Successfully', orderId: order.id });
+
+        } catch (error) {
+            res.status(500).json({ message: 'Internal Server Error' });
+        }
+    }
+
     // Method to get dashboard data for a customer
     get_customer_dashboard_data = async (req, res) => {
         const { userId } = req.params; 

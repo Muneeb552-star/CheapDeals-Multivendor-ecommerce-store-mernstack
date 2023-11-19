@@ -170,9 +170,7 @@ class cartController {
             // Aggregate to fetch cart products and perform a lookup to get product details
             const cartProducts = await cartModel.aggregate([
                 {
-                    $match: {
-                        userId: new ObjectId(userId),
-                    },
+                    $match: { userId: new ObjectId(userId) }
                 },
                 {
                     $lookup: {
@@ -201,7 +199,7 @@ class cartController {
                 const product = productDetails[0];
                 const productId = product._id.toString();
 
-                // Check if the product is out of stock
+                // Check if the product is out of stock                
                 if (product.stock < quantity) {
                     outOfStockProducts.push(productId);
                     return result;
@@ -239,6 +237,7 @@ class cartController {
             }, {});
 
             // Calculate shipping_fee based on the total number of products
+            
             const shippingFee = 70 * Object.keys(formattedCart).length;
 
             // Send the formatted response
@@ -248,7 +247,8 @@ class cartController {
                 cart_products_count: cartProductsCount,
                 shipping_fee: shippingFee,
                 outOfStockProduct: outOfStockProducts,
-            });
+            })
+
         } catch (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         }

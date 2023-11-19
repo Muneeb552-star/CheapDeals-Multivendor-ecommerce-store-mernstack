@@ -1,77 +1,65 @@
-class filterProducts {
-    products = []
-    query = {}
-
-    constructor(products, query){
-        this.products = products
-        this.query = query
+class FilterProducts {
+    constructor(products, query) {
+        this.products = products;
+        this.query = query;
     }
 
-    categoryFilter = () => {
-        this.products = this.query.category ? this.products.filter(product => product.category === this.query.category) : this.products
-        return this
+    categoryFilter() {
+        if (this.query.category) {
+            this.products = this.products.filter(product => product.category === this.query.category);
+        }
+        return this;
     }
 
-    ratingFilter = () => {
-        this.products = this.query.rating ? this.products.filter(product => parseInt(this.query.rating) <= product.rating && product.rating <= parseInt(this.query.rating) + 1) : this.products 
-        return this
+    ratingFilter() {
+        if (this.query.rating) {
+            const rating = parseInt(this.query.rating);
+            this.products = this.products.filter(product => rating <= product.rating && product.rating <= rating + 1);
+        }
+        return this;
     }
 
-    priceFilter = () => {
-        this.products = this.products.filter(product => product.price >= this.query.lowPrice && product.price <= this.query.highPrice)
-        return this
+    priceFilter() {
+        const { lowPrice, highPrice } = this.query;
+        this.products = this.products.filter(product => product.price >= lowPrice && product.price <= highPrice);
+        return this;
     }
 
-    searchFilter = () => {
-        this.products = this.query.searchValue ? this.products.filter(product => product.name.toUpperCase().indexOf(this.query.searchValue.toUpperCase()) > -1) : this.products
-        return this
+    searchFilter() {
+        if (this.query.searchValue) {
+            const searchValue = this.query.searchValue.toUpperCase();
+            this.products = this.products.filter(product => product.name.toUpperCase().includes(searchValue));
+        }
+        return this;
     }
 
-    sortByPrice = () => {
+    sortByPrice() {
         if (this.query.sortPrice) {
-            if (this.query.sortPrice === 'low-to-high') {
-                this.products = this.products.sort(function(a, b) { return a.price - b.price })
-            } else {
-                this.products = this.products.sort(function(a, b) { return b.price - a.price })
-            }
+            const sortOrder = (this.query.sortPrice === 'low-to-high') ? 1 : -1;
+            this.products = this.products.sort((a, b) => sortOrder * (a.price - b.price));
         }
-        return this
+        return this;
     }
 
-    skip = () => {
-        let { pageNumber } = this.query
-        const skipPage = (parseInt(pageNumber) - 1) * this.query.per_page
-
-        let skipProduct = []
-
-        for(let i = skipPage; i < this.products.length; i++) {
-            skipProduct.push(this.products[i])
-        }
-        this.products = skipProduct
-        return this
+    skip() {
+        const skipPage = (parseInt(this.query.pageNumber) - 1) * this.query.per_page;
+        this.products = this.products.slice(skipPage);
+        return this;
     }
 
-    limit = () => {
-        let temp = []
-        if (this.products.length > this.query.per_page) {
-            for (let i = 0; i < this.query.per_page; i++) {
-                temp.push(this.products[i])
-            }
-        } else {
-            temp = this.products
-        }
-        this.products = temp
-
-        return this
+    limit() {
+        const limit = Math.min(this.query.per_page, this.products.length);
+        this.products = this.products.slice(0, limit);
+        return this;
     }
 
-    getProducts = () => {
-        return this.products
+    getProducts() {
+        return this.products;
     }
 
-    countProducts = () => {
-        return this.products.length
+    countProducts() {
+        return this.products.length;
     }
 }
 
-module.exports = filterProducts
+module.exports = FilterProducts;
