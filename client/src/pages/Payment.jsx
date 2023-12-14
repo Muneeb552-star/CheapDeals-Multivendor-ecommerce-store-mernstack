@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom'
 const Payment = () => {
   const { state : { price, items } } = useLocation()
   const [paymentMethod, setPaymentMethod] = useState('stripe')
+
+  
   return (
     <div>
       <Headers/>

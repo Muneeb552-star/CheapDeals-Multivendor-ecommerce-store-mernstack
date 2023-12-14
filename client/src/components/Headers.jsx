@@ -343,10 +343,10 @@ const Headers = () => {
                 <div className="flex justify-between items-center flex-wrap w-[100%]">
                   <ul className='flex justify-start items-start gap-8 text-sm font-bold uppercase'>
                     <li>
-                      <Link to='/' className={`p-2 block hover:text-[#6466E8]`}>Home</Link>
+                      <Link to ='/' className={`p-2 block hover:text-[#6466E8]`}>Home</Link>
                     </li>
                     <li>
-                      <Link to='/shop' className={`p-2 block hover:text-[#6466E8] ${pathname === '/shop' ? 'text-[#6466E8]' : 'text-slate-500'}`}>Shop</Link>
+                      <Link to ='/shop' className={`p-2 block hover:text-[#6466E8] ${pathname === '/shop' ? 'text-[#6466E8]' : 'text-slate-500'}`}>Shop</Link>
                     </li>
                     <li>
                       <Link className={`p-2 block hover:text-[#6466E8] ${pathname === '/blog' ? 'text-[#6466E8]' : 'text-slate-500'}`}>Blog</Link>
@@ -355,7 +355,7 @@ const Headers = () => {
                       <Link className={`p-2 block hover:text-[#6466E8] ${pathname === '/about' ? 'text-[#6466E8]' : 'text-slate-500'}`}>About</Link>
                     </li>
                     <li>
-                      <Link className={`p-2 block hover:text-[#6466E8] ${pathname === '/contact' ? 'text-[#6466E8]' : 'text-slate-500'}`}>Contact</Link>
+                      <Link to ="/contact-us" className={`p-2 block hover:text-[#6466E8] ${pathname === '/contact' ? 'text-[#6466E8]' : 'text-slate-500'}`}>Contact</Link>
                     </li>
                   </ul>
                 </div>

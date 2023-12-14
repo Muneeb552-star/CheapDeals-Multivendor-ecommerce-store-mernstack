@@ -21,6 +21,7 @@ export const send_message = createAsyncThunk(
      async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
         const { data } = await api.post('/chat/customer/send-message-to-seller', info, { withCredentials: true })
+        console.log(data)
         return fulfillWithValue(data)
 
     } catch (error) {
@@ -54,7 +55,7 @@ export const chatReducer = createSlice({
         },
         [send_message.fulfilled]: (state, { payload }) => {
             let tempFriends = state.my_friends
-            let index = tempFriends.findIndex( f => f.idId === payload.message.receiverId )
+            let index = tempFriends.findIndex( f => f.idId === payload.messages.receiverId )
 
             while ( index > 0 ) {
                 let temp = tempFriends[index]
@@ -64,7 +65,7 @@ export const chatReducer = createSlice({
             }
 
             state.my_friends = tempFriends
-            state.fd_messages = [...state.fd_messages, payload.message]
+            state.fd_messages = [...state.fd_messages, payload.messages]
             state.successMessage = ' Message Sent Successfully '
         },
     }

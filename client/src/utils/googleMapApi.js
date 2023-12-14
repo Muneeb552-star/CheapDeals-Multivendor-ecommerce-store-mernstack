@@ -1,0 +1,1 @@
+const googleMapApi = "AIzaSyB--GVUaWjX_3q1IERwpK5IQY00_00QnQs"

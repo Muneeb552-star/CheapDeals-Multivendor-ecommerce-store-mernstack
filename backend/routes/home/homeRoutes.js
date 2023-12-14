@@ -6,7 +6,7 @@ router.get('/get-products', homeController.get_products)
 router.get('/get-product/:slug', homeController.get_product)
 router.get('/product-price-range', homeController.product_price_range)
 router.get('/filter-products', homeController.filter_products)
-router.get('/customer/get-reviews/:productId', homeController.get_reviews)
+router.get('/customer/get-reviews/:productId', homeController.getReviews)
 
 router.post('/customer/submit-review', homeController.submit_review)
 

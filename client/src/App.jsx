@@ -5,6 +5,7 @@ import { get_categories } from './store/reducers/homeReducer'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import Cart from './pages/Cart'
+import ContactUs from './pages/ContactUs'
 import Shipping from './pages/Shipping'
 import Payment from './pages/Payment'
 import Login from './pages/Login'
@@ -42,6 +43,7 @@ function App() {
         <Route path='/shipping' element={<Shipping/>} />
         <Route path='/payment' element={<Payment/>} />
         <Route path='/product/details/:slug' element={<ProductDetails/>} />
+        <Route path='/contact-us' element={<ContactUs/>} />
 
         <Route path='/dashboard' element={<ProtectUser />}>
           <Route path='' element={<Dashboard />}>

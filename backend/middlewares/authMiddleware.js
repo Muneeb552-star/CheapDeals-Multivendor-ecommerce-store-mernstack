@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 
 /**
  * Authentication Middleware
@@ -8,31 +8,24 @@ const jwt = require('jsonwebtoken');
  * If verification is successful, the decoded user information is attached to the request object.
  */
 const authMiddleware = (req, res, next) => {
-  // Get the Authorization header from the request
-  const authHeader = req.headers.authorization || req.headers.Authorization;
+  const authHeader = req.headers.authorization || req.headers.Authorization
 
-  // Check if the header starts with 'Bearer'
   if (!authHeader?.startsWith('Bearer')) {
-    // If not, send an unauthorized response
-    return res
-      .status(401)
-      .json({ message: 'Unauthorized. Please login to proceed' });
+      return res
+        .status(401)
+        .json({ message: 'Unauthorized. Please login to proceed' })
   } else {
-    // Extract the token from the header
-    const token = authHeader.split(' ')[1];
+      const token = authHeader.split(' ')[1]
 
     // Verify the token using the ACCESS_TOKEN_SECRET
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
       if (err) {
-        // If verification fails, send a forbidden response
-        return res.status(403).json({ message: 'Forbidden' });
+        return res.status(403).json({ message: 'Forbidden' })
       }
-      // If verification is successful, attach the decoded user information to the request object
-      req.user = decoded;
-      // Pass control to the next middleware
-      next();
-    });
+      req.user = decoded
+      next()
+    })
   }
-};
+}
 
-module.exports = authMiddleware;
+module.exports = authMiddleware

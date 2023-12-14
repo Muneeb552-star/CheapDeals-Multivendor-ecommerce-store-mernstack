@@ -19,7 +19,7 @@ const Chat = () => {
   const { userInfo } = useSelector( state => state.auth )
   const { fd_messages, currentFd, my_friends } = useSelector( state => state.chat )
 
-  console.log(`friends id is ${my_friends}`)
+  console.log(`friends id is ${fd_messages}`)
 
 //   useEffect(() => {
 //     socket.emit('add_user', userInfo.id, userInfo)
@@ -102,25 +102,27 @@ const Chat = () => {
                         </div>
 
                     <div className="h-[400px] w-full bg-slate-100 p-3 rounded-md">
-
                         <div className="w-full h-full overflow-y-auto flex flex-col gap-3">
 
-                            <div className="w-full flex gap-2 justify-start items-center text-[14px]">
-                                <img className='w-[30px] h-[30px]' src={`../../images/user/admin_avatar.png`} alt="muneeb" />
-                                <div className="p-2 bg-purple-500 text-white rounded-md">
-                                    <span>How are you seller message ?</span>
-                                </div>
-                            </div>
-
-                            <div className="w-full flex gap-2 justify-end items-center text-[14px]">
-                                <img className='w-[30px] h-[30px]' src={`../../images/user/admin_avatar.png`} alt="muneeb" />
-                                <div className="p-2 bg-purple-500 text-white rounded-md">
-                                    <span>How are you vendor message ?</span>
-                                </div>
-                            </div>
+                            {
+                                fd_messages.map((m, i) => {
+                                    if (currentFd?.fdId !== m.receiverId ) {
+                                        return (
+                                            <div key={currentFd.fdId} className="w-full flex gap-2 justify-start items-center text-[14px]">
+                                                <img className='w-[30px] h-[30px]' src={`../../images/user/admin_avatar.png`} alt="muneeb" />
+                                                <div className="p-2 bg-purple-500 text-white rounded-md"><span>{m.message}</span></div>
+                                            </div>
+                                        )
+                                    } else {
+                                        <div key={i} className="w-full flex gap-2 justify-end items-center text-[14px]">
+                                            <img className='w-[30px] h-[30px]' src={`../../images/user/admin_avatar.png`} alt="muneeb" />
+                                            <div className="p-2 bg-cyan-500 text-white rounded-md"><span>{m.status}</span></div>
+                                        </div>
+                                    }
+                                })
+                            }
 
                         </div>
-
                     </div>
 
                     <div className="flex p-2 justify-between items-center w-full">
