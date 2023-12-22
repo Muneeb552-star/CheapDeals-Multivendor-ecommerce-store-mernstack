@@ -26,6 +26,7 @@ import { Pagination } from 'swiper/modules'
 
 
 const ProductDetails = () => {
+  
   const { slug } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()

@@ -1,5 +1,4 @@
 import { lazy } from "react";
-
 // Define the lazy-loaded components
 const AdminDashboard = lazy(() => import('../../views/admin/AdminDashboard'))
 const Orders = lazy(() => import('../../views/admin/Orders'))

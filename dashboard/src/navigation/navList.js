@@ -15,7 +15,6 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import ChatIcon from '@mui/icons-material/Chat';
 import HeadsetIcon from '@mui/icons-material/Headset';
 import PersonIcon from '@mui/icons-material/Person';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 
 export const navList = [
@@ -75,83 +74,69 @@ export const navList = [
         role : 'admin',
         path : '/admin/dashboard/chat-seller'
     },
-    {
-        id : 9,
-        title : 'Logout',
-        icon : <LogoutOutlinedIcon/>,
-        role : 'admin',
-        path : '/logout'
-    },
 
     // Seller Navigation Starts here
     {
-        id : 10,
+        id : 9,
         title : 'Dashboard',
         icon : <DashboardIcon/>,
         role : 'seller',
         path : '/seller/dashboard'
     },
     {
-        id : 11,
+        id : 10,
         title : 'Add Product',
         icon : <AddShoppingCartIcon/>,
         role : 'seller',
         path : '/seller/dashboard/add-product'
     },
     {
-        id : 12,
+        id : 11,
         title : 'All Products',
         icon : <ViewModuleIcon />,
         role : 'seller',
         path : '/seller/dashboard/products'
     },
     {
-        id : 13,
+        id : 12,
         title : 'Discount Product',
         icon : <LocalOfferIcon />,
         role : 'seller',
         path : '/seller/dashboard/discount-products'
     },
     {
-        id : 14,
+        id : 13,
         title : 'Orders',
         icon : <ShoppingBasketIcon />,
         role : 'seller',
         path : '/seller/dashboard/orders'
     },
     {
-        id : 15,
+        id : 14,
         title : 'Payments',
         icon : <CreditCardIcon />,
         role : 'seller',
         path : '/seller/dashboard/payments'
     },
     {
-        id : 16,
+        id : 15,
         title : 'Chat Customer',
         icon : <ChatIcon />,
         role : 'seller',
         path : '/seller/dashboard/chat-customer'
     },
     {
-        id : 17,
+        id : 16,
         title : 'Chat Support',
         icon : <HeadsetIcon />,
         role : 'seller',
         path : '/seller/dashboard/chat-support'
     },
     {
-        id : 18,
+        id : 17,
         title : 'Profile',
         icon : <PersonIcon />,
         role : 'seller',
         path : '/seller/dashboard/profile'
-    },
-    {
-        id : 19,
-        title : 'Logout',
-        icon : <ExitToAppIcon />,
-        role : 'seller',
-        path : '/logout'
     }
 ]

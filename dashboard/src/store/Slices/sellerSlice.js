@@ -45,6 +45,33 @@ export const get_seller = createAsyncThunk(
                 'Authorization': `Bearer ${accessToken}`
             }
         })
+
+        console.log(data)
+        return fulfillWithValue(data)
+
+  } catch (error) {
+      return rejectWithValue(error.response.data)
+  }
+})
+
+
+/* 
+    This function will get active seller details to admin from database.
+*/
+
+export const get_active_sellers = createAsyncThunk(
+    'seller/get_seller',
+     async ( _ , { rejectWithValue, fulfillWithValue }) => {
+    try {
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.get(`/get-sellers`, { 
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
         return fulfillWithValue(data)
 
   } catch (error) {
@@ -102,9 +129,14 @@ export const sellerSlice = createSlice({
             state.seller = payload.seller
             // state.totalSeller = payload.totalSeller
         },
+        
         [seller_status_update.fulfilled] : (state, { payload }) => {
             state.successMessage = payload.message
             state.seller = payload.seller
+            // state.totalSeller = payload.totalSeller
+        },
+        [get_active_sellers.fulfilled] : (state, { payload }) => {
+            state.sellers = payload.sellers
             // state.totalSeller = payload.totalSeller
         }
         

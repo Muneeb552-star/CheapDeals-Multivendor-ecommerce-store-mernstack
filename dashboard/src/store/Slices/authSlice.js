@@ -33,6 +33,32 @@ export const seller_login = createAsyncThunk(
       }
     }
   );
+
+
+export const logout = createAsyncThunk(
+    'async/logout',
+    async ({ navigate, role }, { rejectWithValue, fulfillWithValue }) => {
+      try {
+
+        const accessToken = getAccessToken()
+
+        const { data } = await api.get('/logout', { 
+            withCredentials: true,
+            headers : {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        localStorage.removeItem('accessToken')
+
+        // if role is equal to admin_login, navigate to admin login else seller login
+        role === 'admin' ? navigate('/admin/login') : navigate('/login')
+
+        return fulfillWithValue(data)
+      } catch (error) {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
   
 
 export const seller_register = createAsyncThunk(
@@ -226,3 +252,4 @@ export const authSlice = createSlice({
 })
 export const { clearMessage } = authSlice.actions
 export default authSlice.reducer
+

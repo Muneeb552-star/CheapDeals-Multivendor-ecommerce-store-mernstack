@@ -12,15 +12,10 @@ import { unknownImage } from "../../utils/images"
 
 const SellerDetail = () => {
 
-  const dispatch = useDispatch()
-  const { seller, successMessage } = useSelector(state => state.seller)
   const { sellerId } = useParams()
-
+  const dispatch = useDispatch()
+  const { seller, sellers } = useSelector(state => state.seller)
   const [status, setStatus] = useState('')
-
-  useEffect(() => {
-    dispatch(get_seller(sellerId))
-  }, [sellerId, dispatch])
 
 
    // Function to handle Form submit
@@ -29,16 +24,9 @@ const SellerDetail = () => {
       dispatch(seller_status_update({ sellerId, status }))
     };
 
-  /* 
-    This useEffect hook will handle the success message toast. 
-  */
-    useEffect(() => {  
-      if(successMessage) {
-        toast.success(successMessage)
-        dispatch(clearMessage())
-      }
-    }, [successMessage, dispatch])
-
+    useEffect(() => {
+      dispatch(get_seller(sellerId))
+    }, [sellerId, dispatch]) 
   /* 
     This useEffect hook will set status. 
   */

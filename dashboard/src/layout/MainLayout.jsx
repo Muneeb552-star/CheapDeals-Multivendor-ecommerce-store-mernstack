@@ -25,10 +25,8 @@ export default function MainLayout() {
   const drawer = (
     <div style={{ backgroundColor: '#6466E8', color: 'white', height: '100%'}}>
       <Box sx={{  display: 'flex', alignItems: 'center', justifyContent: 'center', paddingY: '1rem'  }}>
-        {/* <img style={{ padding: '1rem', width: '200px', margin: '0 auto 0 auto' }} src="../../website_logo.png" alt="website_logo" /> */}
         <h2 style={{ text: 'center' }}>Cheap<span style={{ color: 'orange', fontSize: '2rem' }}>.</span> Deals</h2>
       </Box>
-      {/* <Toolbar sx={{ backgroundColor: '#6466E8' }}/> */}
       <Sidebar />
     </div>
   );

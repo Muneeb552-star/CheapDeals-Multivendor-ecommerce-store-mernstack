@@ -56,7 +56,7 @@ const Category = () => {
   const dispatch = useDispatch()
   const { loader, errorMessage, successMessage, categories } = useSelector(state => state.category)
 
-  // useState() hooks for search  bar
+  // useState() hooks for search query
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredRows, setFilteredRows] = useState([])
 
@@ -100,11 +100,11 @@ const Category = () => {
     }
 
     if(successMessage) {
-      toast.success(successMessage)
-      dispatch(clearMessage());
-      setState({ name: '', image: '' })
-      setImageShow('')
-      setOpen(false) // Close the modal here
+        toast.success(successMessage)
+        dispatch(clearMessage());
+        setState({ name: '', image: '' })
+        setImageShow('')
+        setOpen(false) // Close the modal here
     }
   }, [errorMessage, successMessage, dispatch])
 
@@ -141,18 +141,10 @@ const Category = () => {
   /* 
     Modify rows to use filteredRows if available, otherwise use categories
   */ 
-  const rows = filteredRows.length > 0 ? filteredRows.map((row, index) => ({
-    ...row,
-    id: row._id,
-    no: `${index + 1}`,
-  })) : categories.map((row, index) => ({
-    ...row,
-    id: row._id,
-    no: `${index + 1}`,
-  }));
-    
-/* MUI DataGrid Rows Data */
-// const rows = categories ? categories.map((row, index) => ({...row, id: row._id, no: `${index + 1}`})) : []
+  const rows = filteredRows.length > 0 
+                ? filteredRows.map((row, index) => ({ ...row, id: row._id, no: `${index + 1}` })) 
+                : categories.map((row, index) => ({ ...row, id: row._id, no: `${index + 1}` }))
+
 
 /* MUI DataGrid Columns */
 const columns = [
@@ -205,16 +197,16 @@ const columns = [
           <Paper elevation={2}>
             <Box>
               <Box sx={{ width: '15rem', ml: '1rem' }}>
-              <TextField
-                id="search"
-                margin="normal"
-                label="Search"
-                type="text"
-                value={searchQuery}
-                onChange={handleSearch}
-                fullWidth
-                size="small"
-              />
+                <TextField
+                  id="search"
+                  margin="normal"
+                  label="Search"
+                  type="text"
+                  value={searchQuery}
+                  onChange={handleSearch}
+                  fullWidth
+                  size="small"
+                />
               </Box>
              
               <DataGrid

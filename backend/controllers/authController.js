@@ -190,6 +190,16 @@ class authControllers {
             responseReturn(res, 500, { error: error.message })
         }
     }
+
+    logout = async (req, res) => {
+        try {
+            res.cookie('refreshToken', null, { expires : new Date (Date.now()), httpOnly: true })
+            res.status(200).json({ message: "Logout Succesfully" })
+        } catch (error) {
+            console.log(error.message)
+            res.status(500).json({ message: "Internal Server Error" })
+        }
+    }
 }
 
 // Export an instance of the authControllers class
